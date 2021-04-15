@@ -17,11 +17,14 @@ public:
     Scope();
     ~Scope();
     void add(void* ptr, std::string varType, std::string varName);
+    void addStruct(void* ptr, std::string varType, std::string, std::string structName);
     void print();
     int getLength();
     void deleteInPos(int pos);
     void freeAllMemory();
     Node* searchNode(std::string varName);
+
+    void addPointer(void *pVoid, std::string dataType, std::string name, std::string pointerType);
 };
 
 

@@ -32,8 +32,8 @@ void Scope::add(void* ptr, std::string dataType, std::string varName){
     }
     Node* newNode = new Node();
     newNode->setPtr(ptr);
-    newNode->setVarType(dataType);
-    newNode->setVarName(varName);
+    newNode->setDataType(dataType);
+    newNode->setVariableName(varName);
     newNode->setNext(nullptr);
     if (length == 0) {
         head = newNode;
@@ -105,7 +105,7 @@ void Scope::deleteInPos(int pos){
 void Scope::freeAllMemory() {
     Node* tmp = head;
     while (tmp != nullptr){
-        MemoryPool::getInstance()->FreeMemory(tmp->getPtr());
+        MemoryPool::getInstance()->freeMemory(tmp->getPointer());
         tmp->setPtr(nullptr);
         tmp = tmp->getNext();
     }
@@ -136,6 +136,55 @@ Node* Scope::searchNode(std::string varName) {
 int Scope::getLength(){
     return length;
 }
+
+void Scope::addStruct(void *ptr, std::string dataType, std::string name, std::string structName) {
+    Node* tmp = head;
+    for (int i = 0; i < length; ++i) {
+        if(name ==tmp->getVarName()){
+            perror("\"La variable ya existe\"");
+        }
+        tmp->setNext(tmp->getNext());
+    }
+    Node* newNode = new Node();
+    newNode->setPtr(ptr);
+    newNode->setDataType(dataType);
+    newNode->setVariableName(name);
+    newNode->setStructName(structName);
+    newNode->setNext(nullptr);
+    if (length == 0) {
+        head = newNode;
+    } else {
+        newNode->setNext(head);
+        head = newNode;
+    }
+    length++;
+}
+
+void Scope::addPointer(void *ptr, std::string dataType, std::string name, std::string pointerType) {
+    Node* tmp = head;
+    for (int i = 0; i < length; ++i) {
+        if(name ==tmp->getVarName()){
+            perror("\"La variable ya existe\"");
+        }
+        tmp->setNext(tmp->getNext());
+    }
+    Node* newNode = new Node();
+    newNode->setPtr(ptr);
+    newNode->setDataType(dataType);
+    newNode->setVariableName(name);
+    newNode->setPointerType(pointerType);
+    newNode->setNext(nullptr);
+    if (length == 0) {
+        head = newNode;
+    } else {
+        newNode->setNext(head);
+        head = newNode;
+    }
+    length++;
+}
+
+
+
 
 
 

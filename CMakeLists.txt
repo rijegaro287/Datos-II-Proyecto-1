@@ -4,7 +4,9 @@ project(Datos_II_Proyecto_1_Servidor)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
-find_package(jsoncpp CONFIG REQUIRED)
+find_package(jsoncpp CONFIG REQUIRED Pistache CONFIG REQUIRED)
+
+
 find_package(PkgConfig)
 
 pkg_check_modules(Pistache REQUIRED IMPORTED_TARGET libpistache)

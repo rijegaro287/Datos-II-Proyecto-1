@@ -26,7 +26,7 @@
         static MemoryPool* memoryPool;
     public:
         MemoryNode *ptrFirstNode;  //Puntero al primer nodo de memoria (puntero del malloc inicial).
-        MemoryNode *ptrLastChunk;   //Puntero al último nodo de memoria.
+        MemoryNode *ptrLastNode;   //Puntero al último nodo de memoria.
         MemoryNode *ptrCursorNode; // Cursor-Node. Para agilizar el desplazamiento por la lista
         std::size_t TotalMemoryPoolSize;  //Memoria Total del MemoryPool
         std::size_t UsedMemoryPoolSize;   //Memoria usada
@@ -44,7 +44,7 @@
         virtual ~MemoryPool();
         static MemoryPool* getInstance();
         virtual void *GetMemory(const std::size_t &MemorySize);
-        virtual void FreeMemory(void *ptrMemoryBlock);
+        virtual void freeMemory(void *ptrMemoryBlock);
         bool IsValidPointer(void *ptrPointer);
         bool AllocateMemory(const std::size_t &MemorySize);
         void FreeAllAllocatedMemory();
@@ -59,6 +59,7 @@
         bool LinkNodeToData(MemoryNode *ptrNewNodes, unsigned int uiNodeCount, TByte *ptrNewMemBlock);
         void SetMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize);
         bool RecalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int uiNodeCount);
+        void checkReferences();
     };
 
 #endif //DATOS_II_PROYECTO_1_SERVIDOR_MEMORYPOOL_H

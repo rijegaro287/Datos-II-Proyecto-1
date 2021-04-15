@@ -16,7 +16,7 @@
                              const std::size_t &MinimalMemorySizeToAllocate,
                              bool SetMemoryData){
         ptrFirstNode  = NULL ;
-        ptrLastChunk   = NULL ;
+        ptrLastNode   = NULL ;
         ptrCursorNode = NULL ;
 
         TotalMemoryPoolSize = 0 ;
@@ -88,7 +88,7 @@
  * requests.
  * Recibe el puntero de memoria donde se almacena la memoria por borrar.
  */
-    void MemoryPool::FreeMemory(void *ptrMemoryBlock) //, const std::size_t &sMemoryBlockSize)
+    void MemoryPool::freeMemory(void *ptrMemoryBlock) //, const std::size_t &sMemoryBlockSize)
     {
         //Busca el nodo que contiene el puntero por borrar
         MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrMemoryBlock) ;
@@ -156,7 +156,7 @@
         // Hacer que el nodo de memoria esté disponible de nuevo
 
         MemoryNode *ptrCurrentNode = ptrNode ;
-        unsigned int uiChunkCount = CalculateNeededNodes(ptrCurrentNode->UsedSize);
+        unsigned int uiChunkCount = CalculateNeededNodes(ptrCurrentNode->usedSize);
         for(unsigned int i = 0; i < uiChunkCount; i++)
         {
             if(ptrCurrentNode)
@@ -169,7 +169,7 @@
                 }
 
                 // Step 2 : Set espacio usado a 0
-                ptrCurrentNode->UsedSize = 0 ;
+                ptrCurrentNode->usedSize = 0 ;
 
                 // Step 3 : Ajustar los valores de memoria de la pool y pasa al siguiente Node
                 UsedMemoryPoolSize -= MemoryNodeSize ;
@@ -193,20 +193,20 @@
         {
             if(ptrNode)
             {
-                if(ptrNode == ptrLastChunk) // Final de la lista : Comience desde el inicio
+                if(ptrNode == ptrLastNode) // Final de la lista : Comience desde el inicio
                 {
                     ptrNode = ptrFirstNode ;
                 }
 
                 if(ptrNode->DataSize >= MemorySize)
                 {
-                    if(ptrNode->UsedSize == 0)
+                    if(ptrNode->usedSize == 0)
                     {
                         ptrCursorNode = ptrNode ;
                         return ptrNode ;
                     }
                 }
-                NodesToSkip = CalculateNeededNodes(ptrNode->UsedSize) ;
+                NodesToSkip = CalculateNeededNodes(ptrNode->usedSize) ;
                 if(NodesToSkip == 0) NodesToSkip = 1 ;
                 ptrNode = SkipNodes(ptrNode, NodesToSkip) ;
             }
@@ -247,9 +247,10 @@
  */
     void MemoryPool::SetMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize)
     {
-        if((ptrNode)) // && (ptrNode != ptrLastChunk))
+        if((ptrNode)) // && (ptrNode != ptrLastNode))
         {
-            ptrNode->UsedSize = MemBlockSize ;
+            ptrNode->usedSize = MemBlockSize;
+            ptrNode->referenceCount++;
         }
         else
         {
@@ -268,23 +269,23 @@
         for(unsigned int i = 0; i < uiNodeCount; i++){
             if(!ptrFirstNode){
                 ptrFirstNode = SetNodeDefaults(&(ptrNewNodes[0])) ;
-                ptrLastChunk = ptrFirstNode ;
+                ptrLastNode = ptrFirstNode ;
                 ptrCursorNode = ptrFirstNode ;
             }
             else{
                 ptrNewChunk = SetNodeDefaults(&(ptrNewNodes[i])) ;
-                ptrLastChunk->Next = ptrNewChunk ;
-                ptrLastChunk = ptrNewChunk ;
+                ptrLastNode->Next = ptrNewChunk ;
+                ptrLastNode = ptrNewChunk ;
             }
 
             uiMemOffSet = (i * ((unsigned int) MemoryNodeSize)) ;
-            ptrLastChunk->Data = &(ptrNewMemBlock[uiMemOffSet]) ;
+            ptrLastNode->Data = &(ptrNewMemBlock[uiMemOffSet]) ;
 
             //El primer nodo asignado al MemoryPool es el
             //AllocartioNode. Este nodo almacena el puntero del malloc.
             //es el responsable de liberar la memoria luego.
             if(!bAllocationNodeAssigned){
-                ptrLastChunk->IsAllocationNode = true ;
+                ptrLastNode->IsAllocationNode = true ;
                 bAllocationNodeAssigned = true ;
             }
         }
@@ -323,7 +324,7 @@
         {
             ptrChunk->Data = NULL ;
             ptrChunk->DataSize = 0 ;
-            ptrChunk->UsedSize = 0 ;
+            ptrChunk->usedSize = 0 ;
             ptrChunk->IsAllocationNode = false ;
             ptrChunk->Next = NULL ;
         }
@@ -400,4 +401,16 @@
         }
         return false ;
     }
+
+    void MemoryPool::checkReferences() {
+        MemoryNode* tmpNode = ptrFirstNode;
+        while (tmpNode != ptrCursorNode){ //Esto está maomenos, verifica hasta el cursor node, si se le da una vuelta completa al memory pool ya no estaría verifcando to.do lo creado
+            if (tmpNode->usedSize > 0 && tmpNode->referenceCount == 0){
+                freeMemory(tmpNode->Data);
+            }
+            tmpNode = tmpNode->Next;
+        }
+
+    }
+
 

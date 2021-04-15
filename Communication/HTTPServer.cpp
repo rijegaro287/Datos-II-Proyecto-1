@@ -24,9 +24,34 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     // -> Escucha por una petición de tipo POST en http://localhost:port/crearVariable
     // -> Rest::Routes::bind indica la función que se llama para encargarse de la petición
     HTTPServer::router.addRoute(Http::Method::Post, "/crearVariable", Rest::Routes::bind(&HTTPServer::crearVariable, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/createStruct", Rest::Routes::bind(&HTTPServer::createStruct, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/devolverVariable", Rest::Routes::bind(&HTTPServer::devolverVariable, this));
+//    HTTPServer::router.addRoute(Http::Method::Post, "/asignarDireccion", Rest::Routes::bind(&HTTPServer::asignarDireccion, this));
+
+
 }
 
 void HTTPServer::crearVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
-    response.send(Http::Code::Ok, "Variable creada en...");
+    std::string jsonString = VariableManager::getInstance()->createVariable(request.body());
+//    std::cout<<MemoryPool::getInstance()->ObjectCount<<std::endl;
+//    Node* nodo = VariableManager::searchNode("num");
+//    std::cout << (*(int*)nodo->getPointer())<< std::endl;
+    response.send(Http::Code::Ok, jsonString);
 }
+
+void HTTPServer::devolverVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+    log(request.body());
+    std::string jsonString = VariableManager::getInstance()->returnVariableValue(request.body());
+    response.send(Http::Code::Ok, jsonString);
+}
+
+void HTTPServer::createStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+    log(request.body());
+    std::string jsonString = VariableManager::getInstance()->returnVariableValue(request.body());
+}
+
+void HTTPServer::asignarDireccion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+
+}
+

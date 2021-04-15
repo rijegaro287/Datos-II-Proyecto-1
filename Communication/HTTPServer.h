@@ -1,7 +1,9 @@
 #pragma once
+//#include <pistache/http.h>
 #include <pistache/endpoint.h>
-#include <pistache/http.h>
 #include <pistache/router.h>
+#include "../VariableManager.h"
+
 #define log(msg) std::cout << msg << std::endl
 
 using namespace Pistache;
@@ -17,4 +19,8 @@ private:
     void start();
     void setupRoutes();
     void crearVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response);
+    void devolverVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response);
+    void createStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response);
+    void createReference(const Rest::Request &request, Pistache::Http::ResponseWriter response);
+    void asignarDireccion(const Rest::Request &request, Pistache::Http::ResponseWriter response);
 };
