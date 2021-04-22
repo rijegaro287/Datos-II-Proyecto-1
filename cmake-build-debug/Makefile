@@ -169,33 +169,6 @@ Communication/HTTPServer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.s
 .PHONY : Communication/HTTPServer.cpp.s
 
-Communication/Socket.o: Communication/Socket.cpp.o
-
-.PHONY : Communication/Socket.o
-
-# target to build an object file
-Communication/Socket.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o
-.PHONY : Communication/Socket.cpp.o
-
-Communication/Socket.i: Communication/Socket.cpp.i
-
-.PHONY : Communication/Socket.i
-
-# target to preprocess a source file
-Communication/Socket.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.i
-.PHONY : Communication/Socket.cpp.i
-
-Communication/Socket.s: Communication/Socket.cpp.s
-
-.PHONY : Communication/Socket.s
-
-# target to generate assembly for a file
-Communication/Socket.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.s
-.PHONY : Communication/Socket.cpp.s
-
 Memory/MemoryPool.o: Memory/MemoryPool.cpp.o
 
 .PHONY : Memory/MemoryPool.o
@@ -316,9 +289,6 @@ help:
 	@echo "... Communication/HTTPServer.o"
 	@echo "... Communication/HTTPServer.i"
 	@echo "... Communication/HTTPServer.s"
-	@echo "... Communication/Socket.o"
-	@echo "... Communication/Socket.i"
-	@echo "... Communication/Socket.s"
 	@echo "... Memory/MemoryPool.o"
 	@echo "... Memory/MemoryPool.i"
 	@echo "... Memory/MemoryPool.s"

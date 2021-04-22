@@ -13,9 +13,13 @@
 #include <iostream>
 #include <fstream>
 
-/*
- * Nodo vinculado a un bloque de memoria, cada nodo almacena el puntero del bloque
- * y la dirección del siguiente puntero.
+/**
+ * @file MemoryNode.h
+ * @brief Estructura de los nodos que conforman el MemoryPool.
+ * @version 1.0
+ * @date 20/04/2021
+ * @author Yordi Brenes
+ * @title MemoryNode
  */
 typedef struct MemoryNode {
     TByte *Data;            //El dato (puntero)

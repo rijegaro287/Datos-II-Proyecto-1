@@ -1,7 +1,3 @@
-//
-// Created by yordi on 29/3/21.
-//
-
 #ifndef DATOS_II_PROYECTO_1_SERVIDOR_VARIABLEMANAGER_H
 #define DATOS_II_PROYECTO_1_SERVIDOR_VARIABLEMANAGER_H
 
@@ -9,6 +5,7 @@
 #include "Scope/Scope.h"
 #include <json/json.h>
 #include "Communication/HTTPServer.h"
+
 
 class VariableManager {
     private:
@@ -20,20 +17,25 @@ class VariableManager {
         static void add(void*, std::string, std::string);
         void addStruct(void*, std::string, std::string, std::string);
         static void addPointer(void *ptr, std::string basicString, std::string basicString1, std::string basicString2);
+        void checkReferenceCount();
         std::string endScope();
         std::string newScope();
     //        Node* searchNode(std::string variableName);
+        static Node* searchNode(void* ptr);
         static void* setVariableValueToMemomery(std::string dataType, Json::Value jsonObject);
         static Json::Value getPointerValue(Json::Value jsonObject, std::string variableType, void *pointer);
+        void searchAndReduceReferenceCount(void*);
 
 public:
-        static VariableManager* getInstance();
+    static const std::list<Scope *> &getScopes();
+
+    static VariableManager* getInstance();
         static Node* searchNode(std::string varName);
         static std::string createVariable(std::string);
         std::string returnVariableValue(std::string);
         std::string createStruct(std::string);
         std::string assignAddress(std::string jsonString);
-        static std::string dellocatePointer(std::string jsonString);
+        static std::string derefencePointer(std::string jsonString);
         std::string updateScopes(std::string scope);
 
 
@@ -42,7 +44,9 @@ public:
 //        static std::string jsonToString(Json::Value);
         static Json::Value stringToJson(std::string);
 
-    std::string dellocateAndSetPointerValue(std::string jsonString);
+        std::string dellocateAndSetPointerValue(std::string jsonString);
+
+        std::string updateVariableValue(std::string jsonString);
 };
 
 

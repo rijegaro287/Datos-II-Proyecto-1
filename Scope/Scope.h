@@ -8,11 +8,16 @@
 #include "Node.h"
 #include "Memory/MemoryPool.h"
 #include <string>
+#include <iostream>
+#include <cassert>
+#include <json/value.h>
+
 
 class Scope{
 private:
     Node *head;
     int length;
+    void freeMemory(Node*);
 public:
     Scope();
     ~Scope();
@@ -21,10 +26,13 @@ public:
     void print();
     int getLength();
     void deleteInPos(int pos);
-    void freeAllMemory();
+    Json::Value freeAllMemory();
     Node* searchNode(std::string varName);
+    Node* searchNode(void* ptrNode);
 
     void addPointer(void *pVoid, std::string dataType, std::string name, std::string pointerType);
+
+    void checkReferenceCount();
 };
 
 

@@ -115,22 +115,9 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s
 
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o: ../Communication/Socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o -c /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.cpp
-
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.cpp > CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.i
-
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.cpp -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.s
-
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o -c /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.i: cmake_force
@@ -143,7 +130,7 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.s: cmake_force
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o: ../Communication/HTTPServer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o -c /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.cpp
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.i: cmake_force
@@ -159,7 +146,6 @@ Datos_II_Proyecto_1_Servidor_OBJECTS = \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o" \
-"CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o"
 
@@ -172,7 +158,6 @@ Datos_II_Proyecto_1_Servidor_EXTERNAL_OBJECTS = \
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o
-Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o
 Datos_II_Proyecto_1_Servidor: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/debug/lib/objects-Debug/jsoncpp_object/json_reader.cpp.o
@@ -182,7 +167,7 @@ Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.
 Datos_II_Proyecto_1_Servidor: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/debug/lib/libjsoncpp.a
 Datos_II_Proyecto_1_Servidor: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/debug/lib/libpistache.so
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Datos_II_Proyecto_1_Servidor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Datos_II_Proyecto_1_Servidor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

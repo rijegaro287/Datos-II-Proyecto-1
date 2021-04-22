@@ -46,8 +46,6 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o: /hom
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/typeid.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/view.h
 
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o: ../Communication/Socket.cpp
-
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o: ../Memory/MemoryBlock.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o: ../Memory/MemoryNode.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o: ../Memory/MemoryPool.cpp
@@ -59,6 +57,11 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: ../Memory/MemoryP
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: ../Scope/Node.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: ../Scope/Scope.cpp
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: ../Scope/Scope.h
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/config.h
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/forwards.h
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/value.h
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/version.h
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: ../Memory/MemoryBlock.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: ../Memory/MemoryNode.h
@@ -106,7 +109,6 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: /home/yordi/D
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/view.h
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../Communication/HTTPServer.h
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../Communication/Socket.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../Memory/MemoryBlock.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../Memory/MemoryNode.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../Memory/MemoryPool.h

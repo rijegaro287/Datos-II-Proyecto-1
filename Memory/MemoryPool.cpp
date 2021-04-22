@@ -38,7 +38,7 @@
     MemoryPool::~MemoryPool()
     {
         FreeAllAllocatedMemory() ;
-        DeallocateAllChunks() ;
+        DeallocateAllNodes() ;
 
         // Verifica memory-leaks
         assert((ObjectCount == 0) && "WARNING : Memory-Leak : No se ha liberado toda la memoria") ;
@@ -60,12 +60,10 @@
     {
         std::size_t sBestMemBlockSize = CalculateBestMemoryBlockSize(MemorySize) ;
         MemoryNode *ptrNode = NULL ;
-        while(!ptrNode)
-        {
+        if(!ptrNode){
             // Hay un nodo disponible que pueda almacenar esa memoria?
             ptrNode = FindNodeSuitableToHoldMemory(sBestMemBlockSize) ;
-            if(!ptrNode)
-            {
+            if(!ptrNode){
                 //sBestMemBlockSize = MaxValue(sBestMemBlockSize, CalculateBestMemoryBlockSize(MinimalMemorySizeToAllocate)) ;
                 //AllocateMemory(sBestMemBlockSize) ;
                 std::cout<<"Se mamut, no hay nodos que puedan almacenar ese espacio de memoria"<<std::endl;
@@ -104,9 +102,6 @@
         ObjectCount-- ;
     }
 
-/*
- * Ejecuta el malloc() inicial. Se encarga de definir el número de MemoryNodes.
- */
     bool MemoryPool::AllocateMemory(const std::size_t &MemorySize)
     {
         unsigned int NeededNodes = CalculateNeededNodes(MemorySize) ;
@@ -262,12 +257,12 @@
 /*
  * Conecta cada MemoryNode a la MemoryPool.
  */
-    bool MemoryPool::LinkNodeToData(MemoryNode *ptrNewNodes, unsigned int uiNodeCount, TByte *ptrNewMemBlock)
+    bool MemoryPool::LinkNodeToData(MemoryNode *ptrNewNodes, unsigned int NodeCount, TByte *ptrNewMemBlock)
     {
         MemoryNode *ptrNewChunk = NULL ;
         unsigned int uiMemOffSet = 0 ;
         bool bAllocationNodeAssigned = false ;
-        for(unsigned int i = 0; i < uiNodeCount; i++){
+        for(unsigned int i = 0; i < NodeCount; i++){
             if(!ptrFirstNode){
                 ptrFirstNode = SetNodeDefaults(&(ptrNewNodes[0])) ;
                 ptrLastNode = ptrFirstNode ;
@@ -296,10 +291,10 @@
 /*
  *
  */
-    bool MemoryPool::RecalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int uiNodeCount)
+    bool MemoryPool::RecalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int NodeCount)
     {
         unsigned int uiMemOffSet = 0 ;
-        for(unsigned int i = 0; i < uiNodeCount; i++)
+        for(unsigned int i = 0; i < NodeCount; i++)
         {
             if(ptrNodes)
             {
@@ -319,17 +314,17 @@
 /*
  *
  */
-    MemoryNode *MemoryPool::SetNodeDefaults(MemoryNode *ptrChunk)
+    MemoryNode *MemoryPool::SetNodeDefaults(MemoryNode *ptrNode)
     {
-        if(ptrChunk)
+        if(ptrNode)
         {
-            ptrChunk->Data = NULL ;
-            ptrChunk->DataSize = 0 ;
-            ptrChunk->usedSize = 0 ;
-            ptrChunk->IsAllocationNode = false ;
-            ptrChunk->Next = NULL ;
+            ptrNode->Data = NULL ;
+            ptrNode->DataSize = 0 ;
+            ptrNode->usedSize = 0 ;
+            ptrNode->IsAllocationNode = false ;
+            ptrNode->Next = NULL ;
         }
-        return ptrChunk ;
+        return ptrNode ;
     }
 
 /*
@@ -367,7 +362,7 @@
 /*
  *
  */
-    void MemoryPool::DeallocateAllChunks()
+    void MemoryPool::DeallocateAllNodes()
     {
         MemoryNode *ptrChunk = ptrFirstNode ;
         MemoryNode *ptrChunkToDelete = NULL ;
@@ -385,25 +380,25 @@
         }
     }
 
-/*
- *
- */
-    bool MemoryPool::IsValidPointer(void *ptrPointer)
-    {
-        MemoryNode *ptrChunk = ptrFirstNode ;
-        while(ptrChunk)
-        {
-            if(ptrChunk->Data == ((TByte *) ptrPointer))
-            {
-                return true ;
-            }
-            ptrChunk = ptrChunk->Next ;
-        }
-        return false ;
-    }
+///*
+// *
+// */
+//    bool MemoryPool::IsValidPointer(void *ptrPointer)
+//    {
+//        MemoryNode *ptrChunk = ptrFirstNode ;
+//        while(ptrChunk)
+//        {
+//            if(ptrChunk->Data == ((TByte *) ptrPointer))
+//            {
+//                return true ;
+//            }
+//            ptrChunk = ptrChunk->Next ;
+//        }
+//        return false ;
+//    }
 
-void MemoryPool::reduceRefenceCount(void* ptr){
-    MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptr);
+void MemoryPool::reduceRefenceCount(void* ptrNodes){
+    MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrNodes);
     if(ptrNode)
     {
         ptrNode->referenceCount--;

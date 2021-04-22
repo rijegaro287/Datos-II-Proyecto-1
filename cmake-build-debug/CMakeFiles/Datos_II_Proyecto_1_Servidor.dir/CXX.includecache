@@ -14,8 +14,6 @@ pistache/router.h
 ../VariableManager.h
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.h
 
-/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.h
-
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryBlock.h
 stdlib.h
 -
@@ -67,6 +65,8 @@ fstream
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Node.h
 string
 -
+json/value.h
+-
 
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h
 Node.h
@@ -74,6 +74,12 @@ Node.h
 Memory/MemoryPool.h
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Memory/MemoryPool.h
 string
+-
+iostream
+-
+cassert
+-
+json/value.h
 -
 
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.h
@@ -87,8 +93,6 @@ Communication/HTTPServer.h
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
 
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp
-Communication/Socket.h
-/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.h
 json/json.h
 -
 Memory/MemoryPool.h

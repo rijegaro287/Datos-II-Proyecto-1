@@ -46,8 +46,6 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/type_checkers.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/typeid.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/view.h
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/Socket.cpp.o
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.cpp
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryBlock.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryNode.h
@@ -60,6 +58,11 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Node.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h
+ /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
+ /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/config.h
+ /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/forwards.h
+ /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/value.h
+ /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/version.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o
  ../Memory/MemoryBlock.h
  ../Memory/MemoryNode.h
@@ -107,7 +110,6 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/view.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/Socket.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryBlock.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryNode.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h

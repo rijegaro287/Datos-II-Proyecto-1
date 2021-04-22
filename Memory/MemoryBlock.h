@@ -15,8 +15,13 @@
 
 typedef unsigned char TByte;
 
-/*
- * Interfaz del MemoryPool
+/**
+ * @file MemoryBlock.h
+ * @brief Interfaz del MemoryPool
+ * @version 1.0
+ * @date 20/04/2021
+ * @author Yordi Brenes
+ * @title Memory Block
  */
 class MemoryBlock {
 public:
