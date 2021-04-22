@@ -80,6 +80,7 @@ void Scope::checkReferenceCount(){
         if(tmp->getReferenceCount() == 0){
             freeMemory(tmp);
         }
+       tmp = tmp->next;
     }
 }
 
