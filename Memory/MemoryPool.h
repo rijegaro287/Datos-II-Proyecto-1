@@ -77,7 +77,7 @@ class MemoryPool : public MemoryBlock {
         /**
          * @brief Libera toda la memoria almacenada.
          */
-        void FreeAllAllocatedMemory();
+        void freeAllAllocatedMemory();
         /**
          * @brief Calcula el numero de nodos necesarios para almacenar
          * un cierto espacio en memoria.
@@ -118,10 +118,10 @@ class MemoryPool : public MemoryBlock {
          */
         MemoryNode *SetNodeDefaults(MemoryNode *ptrNode);
         /**
-         * @brief Hace que el MemoryNode esté disponible otra vez.
+         * @brief Libera la memoria del MemoryPool.
          * @param ptrNode MemoryNode*
          */
-        void FreeNodes(MemoryNode *ptrNode);
+        void freeNodes(MemoryNode *ptrNode);
         /**
          * @brief Libera los MemoryNodes de memoria
          */
@@ -152,6 +152,8 @@ class MemoryPool : public MemoryBlock {
          * @param ptrNodes
          */
         void reduceRefenceCount(void *ptrNodes);
+
+        void setAllNodesEmpty();
         void checkReferences();
 };
 

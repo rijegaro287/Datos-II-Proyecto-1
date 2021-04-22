@@ -44,11 +44,13 @@ public:
 //        static std::string jsonToString(Json::Value);
         static Json::Value stringToJson(std::string);
 
-        std::string dellocateAndSetPointerValue(std::string jsonString);
+        std::string dereferenceAndSetPointerValue(std::string jsonString);
 
         std::string updateVariableValue(std::string jsonString);
 
     std::string returnAddress(std::string jsonString);
+
+    void endRun();
 };
 
 

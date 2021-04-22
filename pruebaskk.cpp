@@ -119,4 +119,11 @@ int main() {
 //    jsonObject3["nombre"] = "pointer1";
 //    std::string jsonString3 = VariableManager::jsonToString(jsonObject3);
 //    std::cout << VariableManager::dellocatePointer(jsonString3) << std::endl;
+
+//  //ACTUALIZAR EL VALOR DE UNA VARIABLE
+//    Json::Value jsonObject3;
+//    jsonObject3["nombre"] = "num1";
+//    jsonObject3["valor"] = 523;
+//    std::string jsonString3 = VariableManager::jsonToString(jsonObject3);
+//    VariableManager::getInstance()->updateVariableValue(jsonString3);
 }

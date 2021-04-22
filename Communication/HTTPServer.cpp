@@ -31,20 +31,28 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     HTTPServer::router.addRoute(Http::Method::Post, "/asignarDireccion", Rest::Routes::bind(&HTTPServer::asignarDireccion, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/dellocarPuntero", Rest::Routes::bind(&HTTPServer::dellocarPuntero, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/dellocarPunteroYAsignarValor", Rest::Routes::bind(&HTTPServer::dellocarPunteroYAsignarValor, this));
-    HTTPServer::router.addRoute(Http::Method::Post, "/actualizarScopes", Rest::Routes::bind(&HTTPServer::actualizarScopes, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/finalizarEjecucion", Rest::Routes::bind(&HTTPServer::finalizarEjecucion, this));
+
 }
 
 void HTTPServer::crearVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->createVariable(request.body());
     std::cout << jsonString << std::endl;
-    response.send(Http::Code::Ok, jsonString);
+    if(jsonString == "La variable ya existe"){
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else {
+        response.send(Http::Code::Ok, jsonString);
+    }
 }
 
 void HTTPServer::devolverVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->returnVariableValue(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if(jsonString == "La variable no existe"){
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
 
 void HTTPServer::crearStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
@@ -67,7 +75,7 @@ void HTTPServer::dellocarPuntero(const Rest::Request &request, Pistache::Http::R
 
 void HTTPServer::dellocarPunteroYAsignarValor(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
-    std::string jsonString = VariableManager::getInstance()->dellocateAndSetPointerValue(request.body());
+    std::string jsonString = VariableManager::getInstance()->dereferenceAndSetPointerValue(request.body());
     response.send(Http::Code::Ok, jsonString);
 }
 
@@ -90,3 +98,8 @@ void HTTPServer::returnAddress(const Rest::Request &request, Pistache::Http::Res
     response.send(Http::Code::Ok, jsonString);
 }
 
+void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+    log(request.body());
+    VariableManager::getInstance()->endRun();
+    response.send(Http::Code::Ok);
+}

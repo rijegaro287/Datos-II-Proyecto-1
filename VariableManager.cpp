@@ -154,8 +154,8 @@ std::string VariableManager::returnVariableValue(std::string jsonString) {
     std::string variableName = jsonRequest.get("nombre", "valueError").asString();
     Node* variableNode = searchNode(variableName);
     if(!variableNode) {
-        perror("Variable Value Error");
-        return "Variable Value Error";
+        perror("La variable no existe");
+        return "La variable no existe";
     }
     Json::Value jsonVariable;
     jsonVariable["tipoDeDato"] = variableNode->getVariableType();
@@ -268,7 +268,7 @@ std::string VariableManager::assignAddress(std::string jsonString) {
 
 }
 
-std::string VariableManager::dellocateAndSetPointerValue(std::string jsonString){
+std::string VariableManager::dereferenceAndSetPointerValue(std::string jsonString){
     Json::Value jsonObject = stringToJson(jsonString);
     std::string pointerName = jsonObject.get("nombre", "NameError").asString();
     jsonObject["nombre"] = "";
@@ -417,6 +417,16 @@ std::string VariableManager::returnAddress(std::string jsonString) {
     std::string direccion = address.str();
     jsonObject["direccion"] = direccion;
     return jsonToString(jsonObject);
+}
+
+void VariableManager::endRun() {
+    if (scopes.size() > 1){
+        perror("Scope Error, más de un scope al final del programa");
+        return;
+    }
+    Json::Value jsonObject = mainScope->freeAllMemory();
+    checkReferenceCount();
+    MemoryPool::getInstance()->setAllNodesEmpty();
 }
 
 

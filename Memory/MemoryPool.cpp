@@ -37,7 +37,7 @@
 
     MemoryPool::~MemoryPool()
     {
-        FreeAllAllocatedMemory() ;
+        freeAllAllocatedMemory() ;
         DeallocateAllNodes() ;
 
         // Verifica memory-leaks
@@ -92,14 +92,14 @@
         MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrMemoryBlock) ;
         if(ptrNode)
         {
-            FreeNodes(ptrNode) ;
+            freeNodes(ptrNode) ;
         }
         else
         {
             assert(false && "ERROR : El puntero no se encuantra en el MemoryPool") ;
         }
-        assert((ObjectCount > 0) && "ERROR : Request to delete more Memory then allocated.") ;
-        ObjectCount-- ;
+        assert((ObjectCount >= 0) && "ERROR : Request to delete more Memory then allocated.") ;
+//        ObjectCount-- ;
     }
 
     bool MemoryPool::AllocateMemory(const std::size_t &MemorySize)
@@ -146,7 +146,7 @@
  * Hace que el MemoryNode esté disponible para almacenar otra vez.
  * Recibe un puntero de tipo MemoryNode.
  */
-    void MemoryPool::FreeNodes(MemoryNode *ptrNode)
+    void MemoryPool::freeNodes(MemoryNode *ptrNode)
     {
         // Hacer que el nodo de memoria esté disponible de nuevo
 
@@ -169,7 +169,8 @@
 
                 // Step 3 : Ajustar los valores de memoria de la pool y pasa al siguiente Node
                 UsedMemoryPoolSize -= MemoryNodeSize ;
-                ptrCurrentNode = ptrCurrentNode->Next ;
+                ObjectCount--;
+                ptrCurrentNode = ptrCurrentNode->next ;
             }
         }
     }
@@ -225,7 +226,7 @@
         {
             if(ptrCurrentNode)
             {
-                ptrCurrentNode = ptrCurrentNode->Next ;
+                ptrCurrentNode = ptrCurrentNode->next ;
             }
             else
             {
@@ -270,7 +271,7 @@
             }
             else{
                 ptrNewChunk = SetNodeDefaults(&(ptrNewNodes[i])) ;
-                ptrLastNode->Next = ptrNewChunk ;
+                ptrLastNode->next = ptrNewChunk ;
                 ptrLastNode = ptrNewChunk ;
             }
 
@@ -300,7 +301,7 @@
             {
                 uiMemOffSet = (i * ((unsigned int) MemoryNodeSize)) ;
                 ptrNodes->DataSize = (((unsigned int) TotalMemoryPoolSize) - uiMemOffSet) ;
-                ptrNodes = ptrNodes->Next ;
+                ptrNodes = ptrNodes->next ;
             }
             else
             {
@@ -322,7 +323,7 @@
             ptrNode->DataSize = 0 ;
             ptrNode->usedSize = 0 ;
             ptrNode->IsAllocationNode = false ;
-            ptrNode->Next = NULL ;
+            ptrNode->next = NULL ;
         }
         return ptrNode ;
     }
@@ -338,7 +339,7 @@
             {
                 break ;
             }
-            ptrTempNode = ptrTempNode->Next ;
+            ptrTempNode = ptrTempNode->next ;
         }
         return ptrTempNode ;
     }
@@ -346,16 +347,16 @@
 /*
  *
  */
-    void MemoryPool::FreeAllAllocatedMemory()
+    void MemoryPool::freeAllAllocatedMemory()
     {
-        MemoryNode *ptrChunk = ptrFirstNode ;
-        while(ptrChunk)
+        MemoryNode *ptrNode = ptrFirstNode ;
+        while(ptrNode)
         {
-            if(ptrChunk->IsAllocationNode)
+            if(ptrNode->IsAllocationNode)
             {
-                free(((void *) (ptrChunk->Data))) ;
+                free(((void *) (ptrNode->Data))) ;
             }
-            ptrChunk = ptrChunk->Next ;
+            ptrNode = ptrNode->next ;
         }
     }
 
@@ -376,7 +377,7 @@
                 }
                 ptrChunkToDelete = ptrChunk ;
             }
-            ptrChunk = ptrChunk->Next ;
+            ptrChunk = ptrChunk->next ;
         }
     }
 
@@ -392,7 +393,7 @@
 //            {
 //                return true ;
 //            }
-//            ptrChunk = ptrChunk->Next ;
+//            ptrChunk = ptrChunk->next ;
 //        }
 //        return false ;
 //    }
@@ -415,3 +416,12 @@ void MemoryPool::checkReferences(){
             freeMemory(ptrTempNode->Data);
     }
     }
+
+void MemoryPool::setAllNodesEmpty() {
+        MemoryNode* tmpNode = ptrFirstNode;
+        while(tmpNode != nullptr){
+            freeNodes(tmpNode);
+            tmpNode = tmpNode->next;
+        }
+
+}

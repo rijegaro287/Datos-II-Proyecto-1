@@ -24,6 +24,7 @@ public:
         referenceCount = 0;
         structName = "";
         next = 0;
+        ptr = nullptr;
     }
     Node* getNext(){return next;}
     void setNext(Node* nodo){ next = nodo;}
