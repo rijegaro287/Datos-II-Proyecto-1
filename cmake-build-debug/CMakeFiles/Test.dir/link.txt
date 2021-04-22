@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Test.dir/Scope/Scope.cpp.o CMakeFiles/Test.dir/VariableManager.cpp.o CMakeFiles/Test.dir/Communication/Socket.cpp.o CMakeFiles/Test.dir/pruebaskk.cpp.o CMakeFiles/Test.dir/Communication/HTTPServer.cpp.o -o Test 
