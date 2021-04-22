@@ -24,6 +24,7 @@ void Scope::add(void* ptr, std::string dataType, std::string varName){
     for (int i = 0; i < length; ++i) {
         if(varName == tmp->getVariableName()){
             perror("\"La variable ya existe\"");
+            return;
         }
         tmp->setNext(tmp->getNext());
     }
