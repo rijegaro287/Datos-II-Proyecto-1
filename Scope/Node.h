@@ -21,6 +21,7 @@ private:
 public:
     Node *next;
     Node(){
+        referenceCount = 0;
         structName = "";
         next = 0;
     }

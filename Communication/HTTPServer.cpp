@@ -37,6 +37,7 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
 void HTTPServer::crearVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->createVariable(request.body());
+    std::cout << jsonString << std::endl;
     response.send(Http::Code::Ok, jsonString);
 }
 
