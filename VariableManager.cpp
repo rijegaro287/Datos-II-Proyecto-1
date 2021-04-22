@@ -392,6 +392,16 @@ void VariableManager::searchAndReduceReferenceCount(void * ptrNode) {
         node->decreaseCount();
     }
 
+std::string VariableManager::returnAddress(std::string jsonString) {
+    Json::Value jsonObject = stringToJson(jsonString);
+    std::string name = jsonObject.get("nombre", "NameError").asString();
+    Node* variableNode = searchNode(name);
+    void* ptr = variableNode->getPointer();
+    uintptr_t addr = reinterpret_cast<uintptr_t>(ptr);
+    jsonObject["direccion"] = addr;
+    return jsonToString(jsonObject);
+}
+
 
 
 

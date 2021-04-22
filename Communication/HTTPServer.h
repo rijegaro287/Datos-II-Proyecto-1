@@ -70,4 +70,6 @@ private:
     void dellocarPunteroYAsignarValor(const Rest::Request &request, Http::ResponseWriter response);
 
     void actualizarValorVariable(const Rest::Request &request, Http::ResponseWriter response);
+
+    void returnAddress(const Rest::Request &request, Http::ResponseWriter response);
 };

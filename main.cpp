@@ -21,12 +21,9 @@ int main(){
 
     Json::Value jsonObject2;
     jsonObject2["nombre"] = "num";
-    jsonObject2["valor"] = "k";
     std::string jsonString2 = VariableManager::jsonToString(jsonObject2);
-    VariableManager::getInstance()->updateVariableValue(jsonString2);
+    VariableManager::getInstance()->returnAddress(jsonString2);
 
-    nodo = VariableManager::searchNode("num");
-    std::cout << (*(char*)nodo->getPointer())<< std::endl;
 
 
 

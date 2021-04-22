@@ -6,6 +6,58 @@
 
 #IncludeRegexTransform: 
 
+../Memory/MemoryBlock.h
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+assert.h
+-
+iostream
+-
+fstream
+-
+
+../Memory/MemoryNode.h
+MemoryBlock.h
+../Memory/MemoryBlock.h
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+assert.h
+-
+iostream
+-
+fstream
+-
+
+../Memory/MemoryPool.h
+MemoryBlock.h
+../Memory/MemoryBlock.h
+MemoryNode.h
+../Memory/MemoryNode.h
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+assert.h
+-
+iostream
+-
+fstream
+-
+
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.cpp
+HTTPServer.h
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
+
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
 pistache/endpoint.h
 -
@@ -44,6 +96,14 @@ iostream
 fstream
 -
 
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.cpp
+cstring
+-
+MemoryNode.h
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryNode.h
+MemoryPool.h
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h
+
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h
 MemoryBlock.h
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryBlock.h
@@ -68,6 +128,10 @@ string
 json/value.h
 -
 
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp
+Scope.h
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h
+
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h
 Node.h
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Node.h
@@ -81,6 +145,10 @@ cassert
 -
 json/value.h
 -
+
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp
+VariableManager.h
+/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.h
 
 /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.h
 list

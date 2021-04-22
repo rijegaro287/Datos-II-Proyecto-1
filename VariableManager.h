@@ -47,6 +47,8 @@ public:
         std::string dellocateAndSetPointerValue(std::string jsonString);
 
         std::string updateVariableValue(std::string jsonString);
+
+    std::string returnAddress(std::string jsonString);
 };
 
 
