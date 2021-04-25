@@ -21,7 +21,7 @@ class VariableManager {
         std::string newScope();
     //        Node* searchNode(std::string variableName);
         static Node* searchNode(void* ptr);
-        static void* setVariableValueToMemomery(std::string dataType, Json::Value jsonObject);
+        static void* allocateValue(std::string dataType, Json::Value jsonObject);
         static Json::Value getPointerValue(Json::Value jsonObject, std::string variableType, void *pointer);
         void searchAndReduceReferenceCount(void*);
 
@@ -54,6 +54,8 @@ public:
     void *spaceForPrimitiveData(std::string jsonString);
 
     void *spaceForPrimitiveData(Json::Value jsonObject);
+
+    std::string getStructAttribute(std::string jsonString);
 };
 
 

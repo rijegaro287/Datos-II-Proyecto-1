@@ -29,7 +29,8 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     HTTPServer::router.addRoute(Http::Method::Post, "/devolverVariable", Rest::Routes::bind(&HTTPServer::devolverVariable, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/devolverDireccion", Rest::Routes::bind(&HTTPServer::returnAddress, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/asignarDireccion", Rest::Routes::bind(&HTTPServer::asignarDireccion, this));
-    HTTPServer::router.addRoute(Http::Method::Post, "/dellocarPuntero", Rest::Routes::bind(&HTTPServer::dellocarPuntero, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/desreferenciarPuntero", Rest::Routes::bind(
+            &HTTPServer::desreferenciarPuntero, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/actualizarScopes", Rest::Routes::bind(&HTTPServer::actualizarScopes, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/finalizarEjecucion", Rest::Routes::bind(&HTTPServer::finalizarEjecucion, this));
 }
@@ -39,6 +40,7 @@ void HTTPServer::crearVariable(const Rest::Request &request, Pistache::Http::Res
     std::string jsonString = VariableManager::getInstance()->createVariable(request.body());
     std::cout << jsonString << std::endl;
     if(jsonString == "La variable ya existe"){
+        VariableManager::getInstance()->endRun();
         response.send(Http::Code::Bad_Request, jsonString);
     }else {
         response.send(Http::Code::Ok, jsonString);
@@ -49,6 +51,7 @@ void HTTPServer::devolverVariable(const Rest::Request &request, Pistache::Http::
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->returnVariableValue(request.body());
     if(jsonString == "La variable no existe"){
+        VariableManager::getInstance()->endRun();
         response.send(Http::Code::Bad_Request, jsonString);
     }else
         response.send(Http::Code::Ok, jsonString);
@@ -57,38 +60,62 @@ void HTTPServer::devolverVariable(const Rest::Request &request, Pistache::Http::
 void HTTPServer::crearStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->createStruct(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if (jsonString == "Nombre Invalido para Struct"){
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else {
+        response.send(Http::Code::Ok, jsonString);
+    }
 }
 
 void HTTPServer::asignarDireccion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->assignAddress(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if(jsonString == "Puntero no encontrado" or jsonString == "Tipo de puntero no compatible" or jsonString == "Variable no encontrada") {
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
 
-void HTTPServer::dellocarPuntero(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+void HTTPServer::desreferenciarPuntero(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->dereferencePointer(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if (jsonString == "Puntero no encontrado"){
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
 
 void HTTPServer::actualizarScopes(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->updateScopes(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if (jsonString == "Error al actualizar scopes" or jsonString == "Scope Error") {
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
 
 void HTTPServer::actualizarValorVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->updateVariableValue(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if(jsonString == "Variable no encontrada") {
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
-
 
 void HTTPServer::returnAddress(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->returnAddress(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if (jsonString == "Variable no encontrada") {
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else
+        response.send(Http::Code::Ok, jsonString);
 }
 
 void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {

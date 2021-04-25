@@ -49,11 +49,11 @@ private:
      */
     void asignarDireccion(const Rest::Request &request, Pistache::Http::ResponseWriter response);
     /**
-     * @brief dellocarPuntero Ruta para obtener el valor al que apunta una referencia.
+     * @brief desreferenciarPuntero Ruta para obtener el valor al que apunta una referencia.
      * @param request
      * @param response
      */
-    void dellocarPuntero(const Rest::Request &request, Http::ResponseWriter response);
+    void desreferenciarPuntero(const Rest::Request &request, Http::ResponseWriter response);
 
     /**
      * @brief actualizarScopes Ruta para crear o eliminar un scope.

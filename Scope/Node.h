@@ -95,6 +95,10 @@ public:
             (*(double*)ptr) = value;
         }
     }
+
+    const std::string &getStructName() const {
+        return structName;
+    }
 };
 #endif //DATOS_II_PROYECTO_1_SERVIDOR_NODE_H
 

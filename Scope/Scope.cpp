@@ -22,7 +22,6 @@ Scope::~Scope() {
 void Scope::add(void* ptr, std::string dataType, std::string varName){
     Node* newNode = new Node();
     newNode->setPtr(ptr);
-    newNode->increaseCount();
     newNode->setDataType(dataType);
     newNode->setVariableName(varName);
     newNode->setNext(nullptr);
