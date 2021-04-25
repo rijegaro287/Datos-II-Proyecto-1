@@ -12,7 +12,6 @@ class VariableManager {
         static VariableManager* variableManager;
         static std::list<Scope *> scopes;
         Scope* mainScope;
-
         VariableManager();
         static void add(void*, std::string, std::string);
         void addStruct(void*, std::string, std::string, std::string);

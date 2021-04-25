@@ -196,7 +196,7 @@ int Scope::getLength(){
     return length;
 }
 
-void Scope::addStruct(void *ptr, std::string dataType, std::string name, std::string structName) {
+void Scope::addStruct(void *ptr, std::string dataType, std::string name,  std::string structName) {
     Node* tmp = head;
     for (int i = 0; i < length; ++i) {
         if(name == tmp->getVariableName()){
@@ -208,8 +208,8 @@ void Scope::addStruct(void *ptr, std::string dataType, std::string name, std::st
     newNode->setPtr(ptr);
     newNode->setDataType(dataType);
     newNode->setVariableName(name);
-    newNode->increaseCount();
     newNode->setStructName(structName);
+    newNode->increaseCount();
     newNode->setNext(nullptr);
     if (length == 0) {
         head = newNode;

@@ -12,9 +12,9 @@
 
 class Node{
 private:
-    std::string dataType; //Tipo de dato
+    std::string dataType;   //Tipo de dato
     std::string variableName;  //Nombre de la variable
-    std::string structName;  //Nombre de la estructura a la que pertenece (si pertenece)
+    std::string structName;
     std::string pointerType;  //Nombre de la estructura a la que pertenece (si pertenece)
     int referenceCount;    // Conteo de referencias
     void* ptr;             //Puntero al dato almacenado
@@ -22,7 +22,6 @@ public:
     Node *next;
     Node(){
         referenceCount = 0;
-        structName = "";
         next = 0;
         ptr = nullptr;
     }
