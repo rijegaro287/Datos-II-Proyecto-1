@@ -1,6 +1,4 @@
-//
-// Created by yordi on 29/3/21.
-//
+
 
 #ifndef DATOS_II_PROYECTO_1_SERVIDOR_NODE_H
 #define DATOS_II_PROYECTO_1_SERVIDOR_NODE_H
@@ -9,14 +7,16 @@
 
 #include <string>
 #include <json/value.h>
+#include <list>
 
 class Node{
 private:
     std::string dataType;   //Tipo de dato
     std::string variableName;  //Nombre de la variable
-    std::string structName;
+    std::list<std::string> structName;
     std::string pointerType;  //Nombre de la estructura a la que pertenece (si pertenece)
     int referenceCount;    // Conteo de referencias
+    int usageCount;
     void* ptr;             //Puntero al dato almacenado
 public:
     Node *next;
@@ -34,7 +34,7 @@ public:
     const std::string &getVariableName() const {return variableName;}
     void setVariableName(const std::string &varName) { Node::variableName = varName;}
     void setStructName(std::string structName) {
-        Node::structName= structName;
+        Node::structName.push_front(structName);
     }
 
     const std::string &getDataType() const {
@@ -64,8 +64,12 @@ public:
         return referenceCount;
     }
 
-    void increaseCount(){
+    void increaseReferenceCount(){
         referenceCount++;
+    }
+
+    void increaseUsagesCount(){
+        usageCount++;
     }
 
     void decreaseCount(){
@@ -96,8 +100,8 @@ public:
         }
     }
 
-    const std::string &getStructName() const {
-        return structName;
+    const std::list<std::string> &getStructName() const {
+        return Node::structName;
     }
 };
 #endif //DATOS_II_PROYECTO_1_SERVIDOR_NODE_H

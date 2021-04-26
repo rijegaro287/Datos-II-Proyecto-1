@@ -27,6 +27,7 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     HTTPServer::router.addRoute(Http::Method::Post, "/conexionInicial", Rest::Routes::bind(&HTTPServer::conexionInicial, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/actualizarValorVariable", Rest::Routes::bind(&HTTPServer::actualizarValorVariable, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/createStruct", Rest::Routes::bind(&HTTPServer::crearStruct, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/retornarAtributoDeStruct", Rest::Routes::bind(&HTTPServer::retornarAtributoDeStruct, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/devolverVariable", Rest::Routes::bind(&HTTPServer::devolverVariable, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/devolverDireccion", Rest::Routes::bind(&HTTPServer::returnAddress, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/asignarDireccion", Rest::Routes::bind(&HTTPServer::asignarDireccion, this));
@@ -34,7 +35,6 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
             &HTTPServer::desreferenciarPuntero, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/actualizarScopes", Rest::Routes::bind(&HTTPServer::actualizarScopes, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/finalizarEjecucion", Rest::Routes::bind(&HTTPServer::finalizarEjecucion, this));
-    HTTPServer::router.addRoute(Http::Method::Post, "/retornarTimeline", Rest::Routes::bind(&HTTPServer::retornarTimeline, this));
 }
 
 void HTTPServer::conexionInicial(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
@@ -68,6 +68,17 @@ void HTTPServer::crearStruct(const Rest::Request &request, Pistache::Http::Respo
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->createStruct(request.body());
     if (jsonString == "Nombre Invalido para Struct"){
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else {
+        response.send(Http::Code::Ok, jsonString);
+    }
+}
+
+void HTTPServer::retornarAtributoDeStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+    log(request.body());
+    std::string jsonString = VariableManager::getInstance()->returnStructAttribute(request.body());
+    if (jsonString == "Variable no encontrada"){
         VariableManager::getInstance()->endRun();
         response.send(Http::Code::Bad_Request, jsonString);
     }else {
@@ -131,8 +142,3 @@ void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http
     response.send(Http::Code::Ok);
 }
 
-void HTTPServer::retornarTimeline(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
-    log(request.body());
-    std::string jsonString = VariableManager::getInstance()->jsonToString(VariableManager::getInstance()->jsonTimeline);
-    response.send(Http::Code::Ok, jsonString);
-}

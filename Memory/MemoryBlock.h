@@ -26,7 +26,7 @@ typedef unsigned char TByte;
 class MemoryBlock {
 public:
     virtual ~MemoryBlock() {};
-    virtual void *GetMemory(const std::size_t &sMemorySize) = 0;
+    virtual void *getMemory(const std::size_t &sMemorySize) = 0;
     virtual void freeMemory(void *ptrMemoryBlock) = 0;
 };
 

@@ -60,7 +60,7 @@ class MemoryPool : public MemoryBlock {
         * @param sMemorySize Tamaño de memoria en bytes que se almacena.
         * @return El puntero vacio que apunta al espacio almacenado
         */
-        virtual void* GetMemory(const std::size_t &MemorySize);
+        virtual void* getMemory(const std::size_t &MemorySize);
         /**
         * @brief Libera la memoria almacenada.
         * @param ptrMemoryBlock Puntero que apunta al esapacio

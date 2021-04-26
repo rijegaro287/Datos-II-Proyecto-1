@@ -24,7 +24,7 @@
 typedef struct MemoryNode {
     TByte *Data;            //El dato (puntero)
     std::size_t DataSize;   //Tamaño del bloque
-    int referenceCount;    //Número de referencias que tiene el objeto
+//    int referenceCount;    //Número de referencias que tiene el objeto
     std::size_t usedSize;   //Tamaño usado
     bool IsAllocationNode; // Nodo con el puntero del bloque entero de memoria
     MemoryNode *next;     // Puntero al siguiente MemoryNode

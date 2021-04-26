@@ -55,9 +55,8 @@ public:
 
     static void *spaceForPrimitiveData(Json::Value jsonObject);
 
-    std::string getStructAttribute(std::string jsonString);
+    std::string returnStructAttribute(std::string jsonString);
 
-    static void timeline();
 
     static Json::Value jsonTimeline;
 };

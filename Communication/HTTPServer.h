@@ -69,13 +69,6 @@ private:
      */
     void actualizarScopes(const Rest::Request &request, Http::ResponseWriter response);
 
-    /**
-     * @brief dellocarPunteroYAsignarValor Ruta para asignar un valor (no variable) al puntero.
-     * @param request
-     * @param response
-     */
-    void dellocarPunteroYAsignarValor(const Rest::Request &request, Http::ResponseWriter response);
-
     void actualizarValorVariable(const Rest::Request &request, Http::ResponseWriter response);
 
     void returnAddress(const Rest::Request &request, Http::ResponseWriter response);
@@ -83,4 +76,6 @@ private:
     void finalizarEjecucion(const Rest::Request &request, Http::ResponseWriter response);
 
     void retornarTimeline(const Rest::Request &request, Http::ResponseWriter response);
+
+    void retornarAtributoDeStruct(const Rest::Request &request, Http::ResponseWriter response);
 };

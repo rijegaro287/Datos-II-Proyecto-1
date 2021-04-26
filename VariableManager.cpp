@@ -140,7 +140,7 @@ std::string VariableManager::createVariable(std::string jsonString) {
     //Verifica si la variable es un puntero
     if(dataType == "referencia"){
         std::string pointerType = jsonObject.get("tipoDeReferencia", "typeError").asString();
-        ptr = MemoryPool::getInstance()->GetMemory(4);
+        ptr = MemoryPool::getInstance()->getMemory(4);
         void* pVoid;
         *((void**)ptr) = pVoid;
         addPointer(ptr,dataType, name, pointerType);
@@ -162,7 +162,6 @@ std::string VariableManager::createVariable(std::string jsonString) {
     address << (void const *)ptr;
     std::string direccion = address.str();
     jsonObject["direccion"] = direccion;
-    timeline();
     return jsonToString(jsonObject);
 }
 
@@ -184,7 +183,6 @@ std::string VariableManager::returnVariableValue(std::string jsonString) {
     jsonVariable = getPointerValue(jsonVariable, variableNode->getVariableType(), variableNode->getPointer());
 
     std::cout << jsonVariable << std:: endl;
-    timeline();
     return jsonToString(jsonVariable);
 }
 
@@ -200,6 +198,29 @@ std::string VariableManager::createStruct(std::string jsonString) {
 
     add(nullptr, "struct", structName);
 
+    std::string otherStruct = jsonObject.get("asignarUnStruct", "noName").asString();
+    Node* nodeOfOtherStruct = searchNode(otherStruct);
+    if(nodeOfOtherStruct) {
+        for (auto list : scopes) {
+            Node *tmp = list->getHead();
+            while (tmp != nullptr) {
+                for (auto structs : tmp->getStructName()) {
+                    if (structs == otherStruct)
+                        tmp->setStructName(structName);
+
+                    std::ostringstream address;
+                    address << (void const *) tmp->getPointer();
+                    std::string direccion = address.str();
+                    jsonObject["variables"]["direccion"] = direccion;
+                    jsonObject["variables"]["conteoDeReferencia"] = searchNode(tmp->getPointer())->getReferenceCount();
+                    // No se si se aumenta el conteo de referencias
+                }
+                tmp = tmp->next;
+            }
+        }
+        return jsonToString(jsonObject);
+    }
+
     Json::Value variables = jsonObject["variables"];
     for (int i = 0; i < variables.size(); ++i ) {
         std::string dataType = variables[i].get("tipoDeDato", "typeError").asString();
@@ -213,7 +234,6 @@ std::string VariableManager::createStruct(std::string jsonString) {
         jsonObject["variables"][i]["direccion"] = direccion;
         jsonObject["variables"][i]["conteoDeReferencias"] = searchNode(ptr)->getReferenceCount();
     }
-    timeline();
     return jsonToString(jsonObject);
 }
 
@@ -265,7 +285,7 @@ std::string VariableManager::assignAddress(std::string jsonString) {
         if (variableType == pointerType) { //Si los tipos de datos son compatibles
             //Asignar direccion al puntero del nodo
             nodeOfPointer->setPointerPointer(nodeOfVariableToAssign->getPointer());
-            nodeOfVariableToAssign->increaseCount();
+            nodeOfVariableToAssign->increaseReferenceCount();
             jsonObject["conteoDeReferenciasDeVariable"] = nodeOfVariableToAssign->getReferenceCount();
             std::ostringstream address;
             address << (void const *)nodeOfVariableToAssign->getPointer();
@@ -283,7 +303,7 @@ std::string VariableManager::assignAddress(std::string jsonString) {
             Node *nodeOfVariablePointed = searchNode(nodeOfVariableToAssign->getPointerPointer());
             if (nodeOfVariablePointed) { //Si la variable almacena una variable o dato primitivo
                 //Aumenta el conteo de referencias de la variable a la que se apuntaba
-                nodeOfVariablePointed->increaseCount();
+                nodeOfVariablePointed->increaseReferenceCount();
                 jsonObject["conteoDeReferenciasDeVariable"] = nodeOfVariablePointed->getReferenceCount();
                 std::ostringstream address;
                 address << (void const *)nodeOfVariablePointed->getPointer();
@@ -301,7 +321,6 @@ std::string VariableManager::assignAddress(std::string jsonString) {
         jsonObject["datoAntiguo"]["conteoDeReferencias"] = nodeOfOldPointerAddress->getReferenceCount();
     }
     jsonObject["conteoDeReferenciasDePuntero"] = searchNode(pointerName)->getReferenceCount();
-    timeline();
     return jsonToString(jsonObject);
 }
 
@@ -327,7 +346,6 @@ std::string VariableManager::dereferencePointer(std::string jsonString){
 
     jsonDellocatedPointer = getPointerValue(jsonDellocatedPointer, pointerType, ptr);
 
-    timeline();
     return jsonToString(jsonDellocatedPointer);
 }
 
@@ -335,25 +353,25 @@ void *VariableManager::allocateValue(std::string dataType, Json::Value jsonObjec
     void* ptr;
     if(dataType == "int"){
         int value = jsonObject.get("valor", "ValueError").asInt();
-        ptr = MemoryPool::getInstance()->GetMemory(4);
+        ptr = MemoryPool::getInstance()->getMemory(4);
         (*(int*)ptr) = value;
     }else if (dataType == "char") {
         std::string stringChar = jsonObject.get("valor", "ValueError").asString();
         const char *ptrChar = stringChar.c_str();
         char value = *ptrChar;
-        ptr = MemoryPool::getInstance()->GetMemory(1);
+        ptr = MemoryPool::getInstance()->getMemory(1);
         (*(char*)ptr) = value;
     }else if (dataType == "long"){
         long value = jsonObject.get("valor", "ValueError").asLargestInt();
-        ptr = MemoryPool::getInstance()->GetMemory(4);
+        ptr = MemoryPool::getInstance()->getMemory(4);
         (*(long*)ptr) = value;
     }else if (dataType == "float"){
         float value = jsonObject.get("valor", "ValueError").asFloat();
-        ptr = MemoryPool::getInstance()->GetMemory(4);
+        ptr = MemoryPool::getInstance()->getMemory(4);
         (*(float*)ptr) = value;
     }else if (dataType == "double"){
         double value = jsonObject.get("valor", "ValueError").asDouble();
-        ptr = MemoryPool::getInstance()->GetMemory(8);
+        ptr = MemoryPool::getInstance()->getMemory(8);
         (*(double*)ptr) = value;
     }
     return ptr;
@@ -368,7 +386,6 @@ std::string VariableManager::updateVariableValue(std::string jsonString){
         return "Variable no encontrada";
     }
     variableNode->setPointerValue(jsonObject);
-    timeline();
     return jsonToString(jsonObject);
 }
 
@@ -395,10 +412,8 @@ Json::Value VariableManager::getPointerValue(Json::Value jsonObject, std::string
 
 std::string VariableManager::updateScopes(std::string scope){
     if ( scope == "{"){
-        timeline();
         return newScope();
     }else if (scope == "}"){
-        timeline();
         return endScope();
     }else{
         perror("Error al actualizar scopes");
@@ -440,7 +455,6 @@ std::string VariableManager::returnAddress(std::string jsonString) {
     address << (void const *)ptr;
     std::string direccion = address.str();
     jsonObject["direccion"] = direccion;
-    timeline();
     return jsonToString(jsonObject);
 }
 
@@ -453,7 +467,7 @@ void VariableManager::endRun() {
     MemoryPool::getInstance()->setAllNodesEmpty();
 }
 
-std::string VariableManager::getStructAttribute(std::string jsonString) {
+std::string VariableManager::returnStructAttribute(std::string jsonString) {
     Json::Value jsonObject = stringToJson(jsonString);
     std::string structName = jsonObject.get("nombreDeStruct", "NameError").asString();
     std::string name = jsonObject.get("nombre", "NameError").asString();
@@ -462,34 +476,29 @@ std::string VariableManager::getStructAttribute(std::string jsonString) {
     if (!node){
         perror("Variable no encontrada");
         return "Variable no encontrada";
-    } else if(node->getStructName() != structName){
+    }
+    bool flag = false;
+    for (auto name : node->getStructName()) {
+        if (name == structName){
+            flag = true;
+            break;
+        }
+    }
+    if(flag == false){
         perror("Variable no encontrada");
         return "Variable no encontrada";
     }
+
 
     std::string dataType = node->getDataType();
     void* ptr = node->getPointer();
 
     jsonObject = getPointerValue(jsonObject, dataType, ptr);
 
-    timeline();
     return jsonToString(jsonObject);
 }
 
-void VariableManager::timeline(){
-    Node* nodo = nullptr;
-    Json::Value jsonObject;
-    int i = 0;
-    for (auto list : scopes){
-        Node* tmp = list->getHead();
-        while(tmp != nullptr){
-            jsonObject[i] = tmp->getVariableName();
-            i++;
-            tmp = tmp->next;
-        }
-    }
-    jsonTimeline.append(jsonObject);
-}
+
 
 
 

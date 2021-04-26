@@ -56,7 +56,7 @@
  * Devuelve un puntero vacio a la dirección de memoria del MemoryPool que puede
  * almacenar esa memoria.
 */
-    void *MemoryPool::GetMemory(const std::size_t &MemorySize)
+    void *MemoryPool::getMemory(const std::size_t &MemorySize)
     {
         std::size_t sBestMemBlockSize = CalculateBestMemoryBlockSize(MemorySize) ;
         MemoryNode *ptrNode = NULL ;
@@ -165,7 +165,7 @@
 
                 // Step 2 : Set espacio usado a 0
                 ptrCurrentNode->usedSize = 0 ;
-                ptrCurrentNode->referenceCount = 0 ;
+//                ptrCurrentNode->referenceCount = 0 ;
 
                 // Step 3 : Ajustar los valores de memoria de la pool y pasa al siguiente Node
                 UsedMemoryPoolSize -= MemoryNodeSize ;
@@ -247,7 +247,7 @@
         if((ptrNode)) // && (ptrNode != ptrLastNode))
         {
             ptrNode->usedSize = MemBlockSize;
-            ptrNode->referenceCount++;
+//            ptrNode->referenceCount++;
         }
         else
         {
@@ -398,24 +398,24 @@
 //        return false ;
 //    }
 
-void MemoryPool::reduceRefenceCount(void* ptrNodes){
-    MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrNodes);
-    if(ptrNode)
-    {
-        ptrNode->referenceCount--;
-        assert ((ptrNode->referenceCount < 0) && "ERROR : El puntero no se encuantra en el MemoryPool");
-    }
-    else
-        assert(false && "ERROR : El puntero no se encuantra en el MemoryPool") ;
-    }
+//void MemoryPool::reduceRefenceCount(void* ptrNodes){
+//    MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrNodes);
+//    if(ptrNode)
+//    {
+//        ptrNode->referenceCount--;
+//        assert ((ptrNode->referenceCount < 0) && "ERROR : El puntero no se encuantra en el MemoryPool");
+//    }
+//    else
+//        assert(false && "ERROR : El puntero no se encuantra en el MemoryPool") ;
+//    }
 
-void MemoryPool::checkReferences(){
-    MemoryNode *ptrTempNode = ptrFirstNode ;
-    while(ptrTempNode){
-        if(ptrTempNode->referenceCount == 0 and ptrTempNode->usedSize != 0)
-            freeMemory(ptrTempNode->Data);
-    }
-    }
+//void MemoryPool::checkReferences(){
+//    MemoryNode *ptrTempNode = ptrFirstNode ;
+//    while(ptrTempNode){
+//        if(ptrTempNode->referenceCount == 0 and ptrTempNode->usedSize != 0)
+//            freeMemory(ptrTempNode->Data);
+//    }
+//    }
 
 void MemoryPool::setAllNodesEmpty() {
         MemoryNode* tmpNode = ptrFirstNode;
