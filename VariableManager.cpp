@@ -48,12 +48,6 @@ void VariableManager::addPointer(void *ptr, std::string dataType, std::string na
     list->addPointer(ptr, dataType, name, pointerType);
 }
 
-void VariableManager::checkReferenceCount() {
-    Node* nodo = nullptr;
-    for (auto list : scopes){
-        list->checkReferenceCount();
-    }
-}
 
 /*
  * Elimina el scope más reciente
@@ -62,10 +56,8 @@ std::string VariableManager::endScope(){
     Scope* lastScope = scopes.front();
     if (lastScope != mainScope){
         Json::Value jsonObject = lastScope->freeAllMemory();
-        delete lastScope;
         scopes.pop_front();
-        checkReferenceCount();
-        std::cout << jsonObject << std::endl;
+        delete lastScope;
         return jsonToString(jsonObject);
     }else{
         return "Scope Error";
@@ -92,6 +84,7 @@ std::string VariableManager::newScope() {
  */
 Node* VariableManager::searchNode(std::string varName) {
     Node* nodo = nullptr;
+    std::cout<<scopes.size()<<std::endl;
     for (auto list : scopes){
         nodo = list->searchNode(varName);
         if (nodo)
@@ -463,7 +456,6 @@ void VariableManager::endRun() {
         perror("Scope Error, más de un scope al final del programa");
     }
     Json::Value jsonObject = mainScope->freeAllMemory();
-    checkReferenceCount();
     MemoryPool::getInstance()->setAllNodesEmpty();
 }
 

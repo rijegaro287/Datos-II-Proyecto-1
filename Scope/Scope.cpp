@@ -12,7 +12,6 @@ Scope::Scope(){
 }
 
 Scope::~Scope() {
-    freeAllMemory();
 }
 
 /*
@@ -63,16 +62,6 @@ void Scope::freeMemory(Node* node){
         tmp->next = nullptr;
         cur->next = cur->next->next;
         delete tmp;
-    }
-}
-
-void Scope::checkReferenceCount(){
-    Node* tmp = head;
-    while(tmp != nullptr){
-        if(tmp->getReferenceCount() == 0){
-            freeMemory(tmp);
-        }
-       tmp = tmp->next;
     }
 }
 
@@ -168,7 +157,7 @@ Json::Value Scope::freeAllMemory() {
 Node* Scope::searchNode(std::string varName) {
     Node* tmp = head;
     Node* seekedNode = nullptr;
-    for (int i = 0; i < length; ++i) {
+    while(tmp != nullptr){
         if (varName== tmp->getVariableName()){
             seekedNode = tmp;
             break;

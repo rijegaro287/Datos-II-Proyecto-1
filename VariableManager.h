@@ -10,8 +10,7 @@
 class VariableManager {
     private:
         static VariableManager* variableManager;
-        static std::list<Scope *> scopes;
-        Scope* mainScope;
+    Scope* mainScope;
         VariableManager();
         static void add(void*, std::string, std::string);
         void addStruct(void*, std::string, std::string, std::string);
@@ -59,6 +58,7 @@ public:
 
 
     static Json::Value jsonTimeline;
+    static std::list<Scope *> scopes;
 };
 
 
