@@ -6,9 +6,9 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o
  ../Memory/MemoryBlock.h
  ../Memory/MemoryNode.h
  ../Memory/MemoryPool.h
- ../Scope/Node.h
- ../Scope/Scope.h
- ../Scope/VariableManager.h
+ ../MemoryManagement/Scopes/Node.h
+ ../MemoryManagement/Scopes/Scope.h
+ ../MemoryManagement/VariableManager.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.cpp
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
@@ -52,28 +52,28 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryNode.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.cpp
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/Scopes/Scope.cpp.o
  ../Memory/MemoryBlock.h
  ../Memory/MemoryNode.h
  ../Memory/MemoryPool.h
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Node.h
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Node.h
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Scope.cpp
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Scope.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/config.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/forwards.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/value.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/version.h
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/VariableManager.cpp.o
  ../Communication/HTTPServer.h
  ../Memory/MemoryBlock.h
  ../Memory/MemoryNode.h
  ../Memory/MemoryPool.h
- ../Scope/Node.h
- ../Scope/Scope.h
- ../Scope/VariableManager.h
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.h
+ ../MemoryManagement/Scopes/Node.h
+ ../MemoryManagement/Scopes/Scope.h
+ ../MemoryManagement/VariableManager.h
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.cpp
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/config.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/forwards.h
@@ -111,13 +111,13 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/typeid.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/pistache/view.h
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o
- ../Scope/Node.h
- ../Scope/Scope.h
+ ../MemoryManagement/Scopes/Node.h
+ ../MemoryManagement/Scopes/Scope.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryBlock.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryNode.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h
- /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.h
+ /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.h
  /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/allocator.h
  /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/include/json/config.h

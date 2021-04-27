@@ -6,8 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Communication/HTTPServer.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o"
   "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o"
-  "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o"
-  "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o"
+  "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Scope.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/Scopes/Scope.cpp.o"
+  "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/VariableManager.cpp.o"
   "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp" "/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

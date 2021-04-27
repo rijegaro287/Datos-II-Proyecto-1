@@ -104,16 +104,16 @@
 		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Memory/MemoryPool.h">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Scope.cpp">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/Scopes/Scope.h">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.cpp">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.h">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/MemoryManagement/VariableManager.h">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
 		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp">

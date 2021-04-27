@@ -37,8 +37,6 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     HTTPServer::router.addRoute(Http::Method::Post, "/desreferenciarPuntero", Rest::Routes::bind(
             &HTTPServer::desreferenciarPuntero, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/actualizarScopes", Rest::Routes::bind(&HTTPServer::actualizarScopes, this));
-//    HTTPServer::router.addRoute(Http::Method::Post, "/finalizarOverview", Rest::Routes::bind(
-//            &HTTPServer::finalizarOverview, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/finalizarEjecucion", Rest::Routes::bind(&HTTPServer::finalizarEjecucion, this));
 }
 
@@ -114,7 +112,7 @@ void HTTPServer::desreferenciarPuntero(const Rest::Request &request, Pistache::H
 void HTTPServer::actualizarScopes(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->updateScopes(request.body());
-    if (jsonString == "Error al actualizar scopes" or jsonString == "Scope Error") {
+    if (jsonString == "Error al actualizar scopes" or jsonString == "MemoryManagement Error") {
         VariableManager::getInstance()->endRun();
         response.send(Http::Code::Bad_Request, jsonString);
     }else
@@ -140,13 +138,6 @@ void HTTPServer::retornarDireccion(const Rest::Request &request, Pistache::Http:
     }else
         response.send(Http::Code::Ok, jsonString);
 }
-
-//void HTTPServer::finalizarOverview(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
-//    log(request.body());
-//    VariableManager::getInstance()->changeBoolOverview();
-//    response.send(Http::Code::Ok);
-//}
-
 
 void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());

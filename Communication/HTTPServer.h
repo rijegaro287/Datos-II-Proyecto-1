@@ -1,7 +1,7 @@
 #pragma once
 #include <pistache/endpoint.h>
 #include <pistache/router.h>
-#include "Scope/VariableManager.h"
+#include "MemoryManagement/VariableManager.h"
 
 #define log(msg) std::cout << msg << std::endl
 /**

@@ -196,59 +196,59 @@ Memory/MemoryPool.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.s
 .PHONY : Memory/MemoryPool.cpp.s
 
-Scope/Scope.o: Scope/Scope.cpp.o
+MemoryManagement/Scopes/Scope.o: MemoryManagement/Scopes/Scope.cpp.o
 
-.PHONY : Scope/Scope.o
-
-# target to build an object file
-Scope/Scope.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o
-.PHONY : Scope/Scope.cpp.o
-
-Scope/Scope.i: Scope/Scope.cpp.i
-
-.PHONY : Scope/Scope.i
-
-# target to preprocess a source file
-Scope/Scope.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.i
-.PHONY : Scope/Scope.cpp.i
-
-Scope/Scope.s: Scope/Scope.cpp.s
-
-.PHONY : Scope/Scope.s
-
-# target to generate assembly for a file
-Scope/Scope.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.s
-.PHONY : Scope/Scope.cpp.s
-
-Scope/VariableManager.o: Scope/VariableManager.cpp.o
-
-.PHONY : Scope/VariableManager.o
+.PHONY : MemoryManagement/Scopes/Scope.o
 
 # target to build an object file
-Scope/VariableManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o
-.PHONY : Scope/VariableManager.cpp.o
+MemoryManagement/Scopes/Scope.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/Scopes/Scope.cpp.o
+.PHONY : MemoryManagement/Scopes/Scope.cpp.o
 
-Scope/VariableManager.i: Scope/VariableManager.cpp.i
+MemoryManagement/Scopes/Scope.i: MemoryManagement/Scopes/Scope.cpp.i
 
-.PHONY : Scope/VariableManager.i
+.PHONY : MemoryManagement/Scopes/Scope.i
 
 # target to preprocess a source file
-Scope/VariableManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.i
-.PHONY : Scope/VariableManager.cpp.i
+MemoryManagement/Scopes/Scope.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/Scopes/Scope.cpp.i
+.PHONY : MemoryManagement/Scopes/Scope.cpp.i
 
-Scope/VariableManager.s: Scope/VariableManager.cpp.s
+MemoryManagement/Scopes/Scope.s: MemoryManagement/Scopes/Scope.cpp.s
 
-.PHONY : Scope/VariableManager.s
+.PHONY : MemoryManagement/Scopes/Scope.s
 
 # target to generate assembly for a file
-Scope/VariableManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.s
-.PHONY : Scope/VariableManager.cpp.s
+MemoryManagement/Scopes/Scope.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/Scopes/Scope.cpp.s
+.PHONY : MemoryManagement/Scopes/Scope.cpp.s
+
+MemoryManagement/VariableManager.o: MemoryManagement/VariableManager.cpp.o
+
+.PHONY : MemoryManagement/VariableManager.o
+
+# target to build an object file
+MemoryManagement/VariableManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/VariableManager.cpp.o
+.PHONY : MemoryManagement/VariableManager.cpp.o
+
+MemoryManagement/VariableManager.i: MemoryManagement/VariableManager.cpp.i
+
+.PHONY : MemoryManagement/VariableManager.i
+
+# target to preprocess a source file
+MemoryManagement/VariableManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/VariableManager.cpp.i
+.PHONY : MemoryManagement/VariableManager.cpp.i
+
+MemoryManagement/VariableManager.s: MemoryManagement/VariableManager.cpp.s
+
+.PHONY : MemoryManagement/VariableManager.s
+
+# target to generate assembly for a file
+MemoryManagement/VariableManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/MemoryManagement/VariableManager.cpp.s
+.PHONY : MemoryManagement/VariableManager.cpp.s
 
 main.o: main.cpp.o
 
@@ -292,12 +292,12 @@ help:
 	@echo "... Memory/MemoryPool.o"
 	@echo "... Memory/MemoryPool.i"
 	@echo "... Memory/MemoryPool.s"
-	@echo "... Scope/Scope.o"
-	@echo "... Scope/Scope.i"
-	@echo "... Scope/Scope.s"
-	@echo "... Scope/VariableManager.o"
-	@echo "... Scope/VariableManager.i"
-	@echo "... Scope/VariableManager.s"
+	@echo "... MemoryManagement/Scopes/Scope.o"
+	@echo "... MemoryManagement/Scopes/Scope.i"
+	@echo "... MemoryManagement/Scopes/Scope.s"
+	@echo "... MemoryManagement/VariableManager.o"
+	@echo "... MemoryManagement/VariableManager.i"
+	@echo "... MemoryManagement/VariableManager.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
