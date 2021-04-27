@@ -19,29 +19,28 @@
         ptrLastNode   = NULL ;
         ptrCursorNode = NULL ;
 
-        TotalMemoryPoolSize = 0 ;
-        UsedMemoryPoolSize  = 0 ;
-        FreeMemoryPoolSize  = 0 ;
+        totalMemoryPoolSize = 0 ;
+        usedMemoryPoolSize  = 0 ;
+        freeMemoryPoolSize  = 0 ;
 
-        MemoryPool::MemoryNodeSize   = MemoryNodeSize ;
-        MemoryNodeCount = 0 ;
-        ObjectCount      = 0 ;
+        MemoryPool::memoryNodeSize   = MemoryNodeSize ;
+        memoryNodeCount = 0 ;
+        objectCount      = 0 ;
 
-        MemoryPool::SetMemoryData               = SetMemoryData ;
-        MemoryPool::MinimalMemorySizeToAllocate = MinimalMemorySizeToAllocate ; //ESTO SE USA PARA PEDIRLE MÁS ESPACIO AL S.O, YO NO LO USO
+        MemoryPool::setMemoryData               = SetMemoryData ;
 
         // Allcate del big memory block
-        AllocateMemory(MemoryPoolSize);
+        allocateMemory(MemoryPoolSize);
 //        std::cout<<"Servidor eschuchando el puerto: " <<9999 << " Espacio en memeoria creado: "<< std::to_string((int) MemoryPoolSize) << std::endl;
     }
 
     MemoryPool::~MemoryPool()
     {
         freeAllAllocatedMemory() ;
-        DeallocateAllNodes() ;
+        deallocateAllNodes() ;
 
         // Verifica memory-leaks
-        assert((ObjectCount == 0) && "WARNING : Memory-Leak : No se ha liberado toda la memoria") ;
+        assert((objectCount == 0) && "WARNING : Memory-Leak : No se ha liberado toda la memoria") ;
     }
 
     MemoryPool* MemoryPool::getInstance() {
@@ -58,24 +57,24 @@
 */
     void *MemoryPool::getMemory(const std::size_t &MemorySize)
     {
-        std::size_t sBestMemBlockSize = CalculateBestMemoryBlockSize(MemorySize) ;
+        std::size_t sBestMemBlockSize = calculateBestMemoryBlockSize(MemorySize) ;
         MemoryNode *ptrNode = NULL ;
         if(!ptrNode){
             // Hay un nodo disponible que pueda almacenar esa memoria?
-            ptrNode = FindNodeSuitableToHoldMemory(sBestMemBlockSize) ;
+            ptrNode = findNodeSuitableToHoldMemory(sBestMemBlockSize) ;
             if(!ptrNode){
-                //sBestMemBlockSize = MaxValue(sBestMemBlockSize, CalculateBestMemoryBlockSize(MinimalMemorySizeToAllocate)) ;
-                //AllocateMemory(sBestMemBlockSize) ;
+                //sBestMemBlockSize = MaxValue(sBestMemBlockSize, calculateBestMemoryBlockSize(MinimalMemorySizeToAllocate)) ;
+                //allocateMemory(sBestMemBlockSize) ;
                 std::cout<<"Se mamut, no hay nodos que puedan almacenar ese espacio de memoria"<<std::endl;
             }
         }
 
         // Se encuentra un nodo contenedor
         // Ajusta los valores de memorya usada y memoria libre
-        UsedMemoryPoolSize += sBestMemBlockSize ;
-        FreeMemoryPoolSize -= sBestMemBlockSize ;
-        ObjectCount++ ;
-        SetMemoryNodeValues(ptrNode, sBestMemBlockSize) ;
+        usedMemoryPoolSize += sBestMemBlockSize ;
+        freeMemoryPoolSize -= sBestMemBlockSize ;
+        objectCount++ ;
+        setMemoryNodeValues(ptrNode, sBestMemBlockSize) ;
 
         // Devuelve el puntero al espacio de memoria
         return ((void *) ptrNode->data) ;
@@ -89,7 +88,7 @@
     void MemoryPool::freeMemory(void *ptrMemoryBlock) //, const std::size_t &sMemoryBlockSize)
     {
         //Busca el nodo que contiene el puntero por borrar
-        MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrMemoryBlock) ;
+        MemoryNode *ptrNode = findNodeHoldingPointerTo(ptrMemoryBlock) ;
         if(ptrNode)
         {
             freeNodes(ptrNode) ;
@@ -98,48 +97,48 @@
         {
             assert(false && "ERROR : El puntero no se encuantra en el MemoryPool") ;
         }
-        assert((ObjectCount >= 0) && "ERROR : Request to delete more Memory then allocated.") ;
-//        ObjectCount-- ;
+        assert((objectCount >= 0) && "ERROR : Request to delete more Memory then allocated.") ;
+//        objectCount-- ;
     }
 
-    bool MemoryPool::AllocateMemory(const std::size_t &MemorySize)
+    bool MemoryPool::allocateMemory(const std::size_t &MemorySize)
     {
-        unsigned int NeededNodes = CalculateNeededNodes(MemorySize) ;
-        std::size_t BestMemBlockSize = CalculateBestMemoryBlockSize(MemorySize) ;
+        unsigned int NeededNodes = calculateNeededNodes(MemorySize) ;
+        std::size_t BestMemBlockSize = calculateBestMemoryBlockSize(MemorySize) ;
 
         TByte *ptrNewMemBlock = (TByte *) malloc(BestMemBlockSize) ; // Malloc inicial
         MemoryNode *ptrNewNodes = (MemoryNode *) malloc((NeededNodes * sizeof(MemoryNode))) ; // Asigna el espacio para los MemoryNodes
         assert(((ptrNewMemBlock) && (ptrNewNodes)) && "Error : System ran out of Memory") ;
 
         // Ajusta los valores de memoria (Total/Free Memory, etc.)
-        TotalMemoryPoolSize += BestMemBlockSize ;
-        FreeMemoryPoolSize += BestMemBlockSize ;
-        MemoryNodeCount += NeededNodes ;
+        totalMemoryPoolSize += BestMemBlockSize ;
+        freeMemoryPoolSize += BestMemBlockSize ;
+        memoryNodeCount += NeededNodes ;
 
         // Para el debugging
-        if(SetMemoryData)
+        if(setMemoryData)
         {
             memset(((void *) ptrNewMemBlock), NEW_ALLOCATED_MEMORY_CONTENT, BestMemBlockSize) ;
         }
 
         // Asocia la memoria asignada al MemoryBlock con los MemoryNodes
-        return LinkNodeToData(ptrNewNodes, NeededNodes, ptrNewMemBlock) ; ;
+        return linkNodeToData(ptrNewNodes, NeededNodes, ptrNewMemBlock) ; ;
     }
 
 /*
  * Calcula el numero de MemoryNodes necesarios para alamacenar el espacio de memoria
  * de entrada.
  */
-    unsigned int MemoryPool::CalculateNeededNodes(const std::size_t &MemorySize)
+    unsigned int MemoryPool::calculateNeededNodes(const std::size_t &MemorySize)
     {
-        float f = (float) (((float)MemorySize) / ((float)MemoryNodeSize)) ;
+        float f = (float) (((float)MemorySize) / ((float)memoryNodeSize)) ;
         return ((unsigned int) ceil(f)) ;
     }
 
-    std::size_t MemoryPool::CalculateBestMemoryBlockSize(const std::size_t &RequestedMemoryBlockSize)
+    std::size_t MemoryPool::calculateBestMemoryBlockSize(const std::size_t &RequestedMemoryBlockSize)
     {
-        unsigned int NeededNodes = CalculateNeededNodes(RequestedMemoryBlockSize) ;
-        return std::size_t((NeededNodes * MemoryNodeSize)) ;
+        unsigned int NeededNodes = calculateNeededNodes(RequestedMemoryBlockSize) ;
+        return std::size_t((NeededNodes * memoryNodeSize)) ;
     }
 
 /*
@@ -151,16 +150,16 @@
         // Hacer que el nodo de memoria esté disponible de nuevo
 
         MemoryNode *ptrCurrentNode = ptrNode ;
-        unsigned int uiChunkCount = CalculateNeededNodes(ptrCurrentNode->usedSize);
+        unsigned int uiChunkCount = calculateNeededNodes(ptrCurrentNode->usedSize);
         for(unsigned int i = 0; i < uiChunkCount; i++)
         {
             if(ptrCurrentNode)
             {
                 // Step 1 : Set la llocated memory to 'FREEED_MEMORY_CONTENT'
                 // Note : Opcional pero sirve para el debugging
-                if(SetMemoryData)
+                if(setMemoryData)
                 {
-                    memset(((void *) ptrCurrentNode->data), FREEED_MEMORY_CONTENT, MemoryNodeSize) ;
+                    memset(((void *) ptrCurrentNode->data), FREEED_MEMORY_CONTENT, memoryNodeSize) ;
                 }
 
                 // Step 2 : Set espacio usado a 0
@@ -168,8 +167,8 @@
 //                ptrCurrentNode->referenceCount = 0 ;
 
                 // Step 3 : Ajustar los valores de memoria de la pool y pasa al siguiente Node
-                UsedMemoryPoolSize -= MemoryNodeSize ;
-                ObjectCount--;
+                usedMemoryPoolSize -= memoryNodeSize ;
+                objectCount--;
                 ptrCurrentNode = ptrCurrentNode->next ;
             }
         }
@@ -180,13 +179,13 @@
  * Busca un(unos) MemoryNodes que puedan almacenar la memoria.
  * Recibe el tamaño necesitado en bytes.
  */
-    MemoryNode *MemoryPool::FindNodeSuitableToHoldMemory(const std::size_t &MemorySize)
+    MemoryNode *MemoryPool::findNodeSuitableToHoldMemory(const std::size_t &MemorySize)
     {
         // Encuentra un nodo que al menos pueda almacenar MemorySize
         unsigned int NodesToSkip = 0 ;
         bool ContinueSearch = true ;
         MemoryNode *ptrNode = ptrCursorNode ; // Empiece a buscar desde el ptrCursorNode
-        for(unsigned int i = 0; i < MemoryNodeCount; i++)
+        for(unsigned int i = 0; i < memoryNodeCount; i++)
         {
             if(ptrNode)
             {
@@ -203,9 +202,9 @@
                         return ptrNode ;
                     }
                 }
-                NodesToSkip = CalculateNeededNodes(ptrNode->usedSize) ;
+                NodesToSkip = calculateNeededNodes(ptrNode->usedSize) ;
                 if(NodesToSkip == 0) NodesToSkip = 1 ;
-                ptrNode = SkipNodes(ptrNode, NodesToSkip) ;
+                ptrNode = skipNodes(ptrNode, NodesToSkip) ;
             }
             else
             {
@@ -219,7 +218,7 @@
  * Omite cierto numero de MemoryNodes. Recibe un puntero de MemoryNode y el número
  * de MemoryNodes a omitir.
  */
-    MemoryNode *MemoryPool::SkipNodes(MemoryNode *ptrStartNode, unsigned int NodesToSkip)
+    MemoryNode *MemoryPool::skipNodes(MemoryNode *ptrStartNode, unsigned int NodesToSkip)
     {
         MemoryNode *ptrCurrentNode = ptrStartNode ;
         for(unsigned int i = 0; i < NodesToSkip; i++)
@@ -242,7 +241,7 @@
 /*
  *Settear los valores en un MemoryNode.
  */
-    void MemoryPool::SetMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize)
+    void MemoryPool::setMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize)
     {
         if((ptrNode)) // && (ptrNode != ptrLastNode))
         {
@@ -258,24 +257,24 @@
 /*
  * Conecta cada MemoryNode a la MemoryPool.
  */
-    bool MemoryPool::LinkNodeToData(MemoryNode *ptrNewNodes, unsigned int NodeCount, TByte *ptrNewMemBlock)
+    bool MemoryPool::linkNodeToData(MemoryNode *ptrNewNodes, unsigned int NodeCount, TByte *ptrNewMemBlock)
     {
         MemoryNode *ptrNewChunk = NULL ;
         unsigned int uiMemOffSet = 0 ;
         bool bAllocationNodeAssigned = false ;
         for(unsigned int i = 0; i < NodeCount; i++){
             if(!ptrFirstNode){
-                ptrFirstNode = SetNodeDefaults(&(ptrNewNodes[0])) ;
+                ptrFirstNode = setNodeDefaults(&(ptrNewNodes[0])) ;
                 ptrLastNode = ptrFirstNode ;
                 ptrCursorNode = ptrFirstNode ;
             }
             else{
-                ptrNewChunk = SetNodeDefaults(&(ptrNewNodes[i])) ;
+                ptrNewChunk = setNodeDefaults(&(ptrNewNodes[i])) ;
                 ptrLastNode->next = ptrNewChunk ;
                 ptrLastNode = ptrNewChunk ;
             }
 
-            uiMemOffSet = (i * ((unsigned int) MemoryNodeSize)) ;
+            uiMemOffSet = (i * ((unsigned int) memoryNodeSize)) ;
             ptrLastNode->data = &(ptrNewMemBlock[uiMemOffSet]) ;
 
             //El primer nodo asignado al MemoryPool es el
@@ -286,21 +285,21 @@
                 bAllocationNodeAssigned = true ;
             }
         }
-        return RecalcNodeMemorySize(ptrFirstNode, MemoryNodeCount) ;
+        return recalcNodeMemorySize(ptrFirstNode, memoryNodeCount) ;
     }
 
 /*
  *
  */
-    bool MemoryPool::RecalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int NodeCount)
+    bool MemoryPool::recalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int NodeCount)
     {
         unsigned int uiMemOffSet = 0 ;
         for(unsigned int i = 0; i < NodeCount; i++)
         {
             if(ptrNodes)
             {
-                uiMemOffSet = (i * ((unsigned int) MemoryNodeSize)) ;
-                ptrNodes->dataSize = (((unsigned int) TotalMemoryPoolSize) - uiMemOffSet) ;
+                uiMemOffSet = (i * ((unsigned int) memoryNodeSize)) ;
+                ptrNodes->dataSize = (((unsigned int) totalMemoryPoolSize) - uiMemOffSet) ;
                 ptrNodes = ptrNodes->next ;
             }
             else
@@ -315,7 +314,7 @@
 /*
  *
  */
-    MemoryNode *MemoryPool::SetNodeDefaults(MemoryNode *ptrNode)
+    MemoryNode *MemoryPool::setNodeDefaults(MemoryNode *ptrNode)
     {
         if(ptrNode)
         {
@@ -331,7 +330,7 @@
 /*
  *
  */
-    MemoryNode *MemoryPool::FindNodeHoldingPointerTo(void *ptrMemoryBlock){
+    MemoryNode *MemoryPool::findNodeHoldingPointerTo(void *ptrMemoryBlock){
         MemoryNode *ptrTempNode = ptrFirstNode ;
         while(ptrTempNode)
         {
@@ -363,7 +362,7 @@
 /*
  *
  */
-    void MemoryPool::DeallocateAllNodes()
+    void MemoryPool::deallocateAllNodes()
     {
         MemoryNode *ptrChunk = ptrFirstNode ;
         MemoryNode *ptrChunkToDelete = NULL ;
@@ -399,7 +398,7 @@
 //    }
 
 //void MemoryPool::reduceRefenceCount(void* ptrNodes){
-//    MemoryNode *ptrNode = FindNodeHoldingPointerTo(ptrNodes);
+//    MemoryNode *ptrNode = findNodeHoldingPointerTo(ptrNodes);
 //    if(ptrNode)
 //    {
 //        ptrNode->referenceCount--;

@@ -1,10 +1,12 @@
 #include "HTTPServer.h"
+int HTTPServer::port;
 
 HTTPServer* HTTPServer::createServer(int port) { // -> Inicia el server que escucha en http://localhost:port/
     Address addr(Ipv4::any(), port);
     HTTPServer *stats = new HTTPServer(addr);
     stats->init();
     stats->start();
+    HTTPServer::port = port;
     return stats;
 }
 
@@ -29,18 +31,20 @@ void HTTPServer::setupRoutes() { // -> Agrega las rutas para los servicios
     HTTPServer::router.addRoute(Http::Method::Post, "/createStruct", Rest::Routes::bind(&HTTPServer::crearStruct, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/retornarAtributoDeStruct", Rest::Routes::bind(&HTTPServer::retornarAtributoDeStruct, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/devolverVariable", Rest::Routes::bind(&HTTPServer::devolverVariable, this));
-    HTTPServer::router.addRoute(Http::Method::Post, "/devolverDireccion", Rest::Routes::bind(&HTTPServer::returnAddress, this));
+    HTTPServer::router.addRoute(Http::Method::Post, "/devolverDireccion", Rest::Routes::bind(
+            &HTTPServer::retornarDireccion, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/asignarDireccion", Rest::Routes::bind(&HTTPServer::asignarDireccion, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/desreferenciarPuntero", Rest::Routes::bind(
             &HTTPServer::desreferenciarPuntero, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/actualizarScopes", Rest::Routes::bind(&HTTPServer::actualizarScopes, this));
-    HTTPServer::router.addRoute(Http::Method::Post, "/primerRecorrido", Rest::Routes::bind(&HTTPServer::primerRecorrido, this));
+//    HTTPServer::router.addRoute(Http::Method::Post, "/finalizarOverview", Rest::Routes::bind(
+//            &HTTPServer::finalizarOverview, this));
     HTTPServer::router.addRoute(Http::Method::Post, "/finalizarEjecucion", Rest::Routes::bind(&HTTPServer::finalizarEjecucion, this));
 }
 
 void HTTPServer::conexionInicial(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
-    response.send(Http::Code::Ok, "Conexion establecida correctamente, servidor eschuchando el puerto: 9999.Espacio en memeoria creado: 1000 bytes");
+    response.send(Http::Code::Ok, "Conexion establecida correctamente, servidor eschuchando el puerto: 9090. Espacio creado en memeoria: 1000 bytes");
 }
 
 void HTTPServer::crearVariable(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
@@ -127,7 +131,7 @@ void HTTPServer::actualizarValorVariable(const Rest::Request &request, Pistache:
         response.send(Http::Code::Ok, jsonString);
 }
 
-void HTTPServer::returnAddress(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+void HTTPServer::retornarDireccion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->returnAddress(request.body());
     if (jsonString == "Variable no encontrada") {
@@ -137,11 +141,11 @@ void HTTPServer::returnAddress(const Rest::Request &request, Pistache::Http::Res
         response.send(Http::Code::Ok, jsonString);
 }
 
-void HTTPServer::primerRecorrido(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
-    log(request.body());
-//    VariableManager::getInstance()->overview();
-    response.send(Http::Code::Ok);
-}
+//void HTTPServer::finalizarOverview(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
+//    log(request.body());
+//    VariableManager::getInstance()->changeBoolOverview();
+//    response.send(Http::Code::Ok);
+//}
 
 
 void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http::ResponseWriter response) {

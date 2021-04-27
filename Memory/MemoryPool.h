@@ -32,18 +32,97 @@
 class MemoryPool : public MemoryBlock {
     private:
         static MemoryPool* memoryPool;
-    public:
         MemoryNode *ptrFirstNode;  //Puntero al primer nodo de memoria (puntero del malloc inicial).
         MemoryNode *ptrLastNode;   //Puntero al último nodo de memoria.
         MemoryNode *ptrCursorNode; // Cursor-Node. Para agilizar el desplazamiento por la lista
-        std::size_t TotalMemoryPoolSize;  //Memoria Total del MemoryPool
-        std::size_t UsedMemoryPoolSize;   //Memoria usada
-        std::size_t FreeMemoryPoolSize;   //Memoria libre
-        std::size_t MemoryNodeSize;     //Memoria por nodo
-        unsigned int MemoryNodeCount;  //Numero de nodos de momoria en el memori pool
-        unsigned int ObjectCount;       //Numero de objetos en el memory pool (#getMemory()-#freeMemory())
-        bool SetMemoryData;                      //Si es igual al true, al alocar o delocar setea la memoria a un valor definido (Para debugging)
-        std::size_t MinimalMemorySizeToAllocate;
+        std::size_t totalMemoryPoolSize;  //Memoria Total del MemoryPool
+        std::size_t usedMemoryPoolSize;   //Memoria usada
+        std::size_t freeMemoryPoolSize;   //Memoria libre
+        std::size_t memoryNodeSize;     //Memoria por nodo
+        unsigned int memoryNodeCount;  //Numero de nodos de momoria en el memori pool
+        unsigned int objectCount;       //Numero de objetos en el memory pool (#getMemory()-#freeMemory())
+        bool setMemoryData;              //Si es igual al true, al alocar o delocar setea la memoria a un valor definido (Para debugging)
+
+        /**
+        * @brief Ejecuta el malloc() inicial y ajusta los valores iniciales de memoria.
+        * @param MemorySize
+        * @return
+        */
+        bool allocateMemory(const std::size_t &MemorySize);
+        /**
+         * @brief Libera toda la memoria almacenada.
+         */
+        void freeAllAllocatedMemory();
+        /**
+         * @brief Calcula el numero de nodos necesarios para almacenar
+         * un cierto espacio en memoria.
+         * @param MemorySi-ze Espacio en memoria (en bytes) que se va a almacenar.
+         * @return Número de nodos.
+         */
+        unsigned int calculateNeededNodes(const std::size_t &MemorySize);
+        /**
+         * @brief Calcula: (# nodos necesarios) * (tamaño de cada nodo).
+         * @param RequestedMemoryBlockSize Número de nodos necesarios.
+         * @return Resultado del cálculo (# nodos necesarios) * (tamaño de cada nodo).
+         */
+        std::size_t calculateBestMemoryBlockSize(const std::size_t &RequestedMemoryBlockSize);
+        /**
+         * @brief Recorre la lista de MemoryNodes en busca de el nodo que
+         * pueda almacenar la memoria recibida.
+         * @param MemorySize Tamaño de memoria (en bytes) que se quiere almacenar.
+         * @return MemoryNode* que puede almacenar el espacio en memoria.
+         */
+        MemoryNode *findNodeSuitableToHoldMemory(const std::size_t &MemorySize);
+        /**
+         * @brief Recorre el nodo en busca del nodo que tenga el puntero recibido.
+         * @param ptrMemoryBlock Puntero de nodo que se desea encontrar.
+         * @return MemoryNode* con el puntero de entrada.
+         */
+        MemoryNode *findNodeHoldingPointerTo(void *ptrMemoryBlock);
+        /**
+         * @brief Omite cierto numero de MemoryNodes. Recibe un  y el
+         * @param ptrStartNode Puntero de MemoryNode
+         * @param NodesToSkip Número de MemoryNodes a omitir.
+         * @return El MemoryNode* siguiente a los omitidos.
+         */
+        MemoryNode *skipNodes(MemoryNode *ptrStartNode, unsigned int NodesToSkip);
+        /**
+         * @brief Establece los valores predetermandos al MemoryNode de entrada.
+         * @param ptrNode MemoryNode*.
+         * @return MemoryNode*.
+         */
+        MemoryNode *setNodeDefaults(MemoryNode *ptrNode);
+        /**
+         * @brief Libera la memoria del MemoryPool.
+         * @param ptrNode MemoryNode*
+         */
+        void freeNodes(MemoryNode *ptrNode);
+        /**
+         * @brief Libera los MemoryNodes de memoria
+         */
+        void deallocateAllNodes();
+        /**
+         * @brief Vincula los bloques de memoria con los MemoryNodes.
+         * @param ptrNewNodes El puntero del espacio almacenado para los MemoryNode.
+         * @param NodeCount Número de nodos que se crearán.
+         * @param ptrNewMemBlock Puntero del malloc de memoria inicial.
+         * @return
+         */
+        bool linkNodeToData(MemoryNode *ptrNewNodes, unsigned int NodeCount, TByte *ptrNewMemBlock);
+        /**
+         * @brief Asigna los valores a un MemoryNode.
+         * @param ptrNode Puntero del MemoryNode.
+         * @param MemBlockSize Porción de momoria usada.
+         */
+        void setMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize);
+        /**
+         * @brief Calcula y asigna el valor de espacio de memoria de cada nodo.
+         * @param ptrNodes
+         * @param NodeCount
+         * @return verdadero si no hubo ningún problema.
+         */
+        bool recalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int NodeCount);
+    public:
 
         MemoryPool(const std::size_t &MemoryPoolSize = DEFAULT_MEMORY_POOL_SIZE,
                    const std::size_t &MemoryNodeSize = DEFAULT_MEMORY_NODE_SIZE,
@@ -67,94 +146,10 @@ class MemoryPool : public MemoryBlock {
         * alamcenado que se va a liberar.
         */
         virtual void freeMemory(void *ptrMemoryBlock);
-//        bool IsValidPointer(void *ptrPointer);
         /**
-         * @brief Ejecuta el malloc() inicial y ajusta los valores iniciales de memoria.
-         * @param MemorySize
-         * @return
-         */
-        bool AllocateMemory(const std::size_t &MemorySize);
-        /**
-         * @brief Libera toda la memoria almacenada.
-         */
-        void freeAllAllocatedMemory();
-        /**
-         * @brief Calcula el numero de nodos necesarios para almacenar
-         * un cierto espacio en memoria.
-         * @param MemorySize Espacio en memoria (en bytes) que se va a almacenar.
-         * @return Número de nodos.
-         */
-        unsigned int CalculateNeededNodes(const std::size_t &MemorySize);
-        /**
-         * @brief Calcula: (# nodos necesarios) * (tamaño de cada nodo).
-         * @param RequestedMemoryBlockSize Número de nodos necesarios.
-         * @return Resultado del cálculo (# nodos necesarios) * (tamaño de cada nodo).
-         */
-        std::size_t CalculateBestMemoryBlockSize(const std::size_t &RequestedMemoryBlockSize);
-        /**
-         * @brief Recorre la lista de MemoryNodes en busca de el nodo que
-         * pueda almacenar la memoria recibida.
-         * @param MemorySize Tamaño de memoria (en bytes) que se quiere almacenar.
-         * @return MemoryNode* que puede almacenar el espacio en memoria.
-         */
-        MemoryNode *FindNodeSuitableToHoldMemory(const std::size_t &MemorySize);
-        /**
-         * @brief Recorre el nodo en busca del nodo que tenga el puntero recibido.
-         * @param ptrMemoryBlock Puntero de nodo que se desea encontrar.
-         * @return MemoryNode* con el puntero de entrada.
-         */
-        MemoryNode *FindNodeHoldingPointerTo(void *ptrMemoryBlock);
-        /**
-         * @brief Omite cierto numero de MemoryNodes. Recibe un  y el
-         * @param ptrStartNode Puntero de MemoryNode
-         * @param NodesToSkip Número de MemoryNodes a omitir.
-         * @return El MemoryNode* siguiente a los omitidos.
-         */
-        MemoryNode *SkipNodes(MemoryNode *ptrStartNode, unsigned int NodesToSkip);
-        /**
-         * @brief Establece los valores predetermandos al MemoryNode de entrada.
-         * @param ptrNode MemoryNode*.
-         * @return MemoryNode*.
-         */
-        MemoryNode *SetNodeDefaults(MemoryNode *ptrNode);
-        /**
-         * @brief Libera la memoria del MemoryPool.
-         * @param ptrNode MemoryNode*
-         */
-        void freeNodes(MemoryNode *ptrNode);
-        /**
-         * @brief Libera los MemoryNodes de memoria
-         */
-        void DeallocateAllNodes();
-        /**
-         * @brief Vincula los bloques de memoria con los MemoryNodes.
-         * @param ptrNewNodes El puntero del espacio almacenado para los MemoryNode.
-         * @param NodeCount Número de nodos que se crearán.
-         * @param ptrNewMemBlock Puntero del malloc de memoria inicial.
-         * @return
-         */
-        bool LinkNodeToData(MemoryNode *ptrNewNodes, unsigned int NodeCount, TByte *ptrNewMemBlock);
-        /**
-         * @brief Asigna los valores a un MemoryNode.
-         * @param ptrNode Puntero del MemoryNode.
-         * @param MemBlockSize Porción de momoria usada.
-         */
-        void SetMemoryNodeValues(MemoryNode *ptrNode, const std::size_t &MemBlockSize);
-        /**
-         * @brief Calcula y asigna el valor de espacio de memoria de cada nodo.
-         * @param ptrNodes
-         * @param NodeCount
-         * @return verdadero si no hubo ningún problema.
-         */
-        bool RecalcNodeMemorySize(MemoryNode *ptrNodes, unsigned int NodeCount);
-        /**
-         * @brief Reduce el conteo de referencias de un valor almacenado en el MemoryNode.
-         * @param ptrNodes
-         */
-        void reduceRefenceCount(void *ptrNodes);
-
+        * @brief Libera el espacio en todos los MemoryNodes.
+        */
         void setAllNodesEmpty();
-        void checkReferences();
 };
 
 #endif //DATOS_II_PROYECTO_1_SERVIDOR_MEMORYPOOL_H

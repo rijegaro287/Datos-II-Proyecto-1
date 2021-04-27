@@ -223,32 +223,32 @@ Scope/Scope.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.s
 .PHONY : Scope/Scope.cpp.s
 
-VariableManager.o: VariableManager.cpp.o
+Scope/VariableManager.o: Scope/VariableManager.cpp.o
 
-.PHONY : VariableManager.o
+.PHONY : Scope/VariableManager.o
 
 # target to build an object file
-VariableManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o
-.PHONY : VariableManager.cpp.o
+Scope/VariableManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o
+.PHONY : Scope/VariableManager.cpp.o
 
-VariableManager.i: VariableManager.cpp.i
+Scope/VariableManager.i: Scope/VariableManager.cpp.i
 
-.PHONY : VariableManager.i
+.PHONY : Scope/VariableManager.i
 
 # target to preprocess a source file
-VariableManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.i
-.PHONY : VariableManager.cpp.i
+Scope/VariableManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.i
+.PHONY : Scope/VariableManager.cpp.i
 
-VariableManager.s: VariableManager.cpp.s
+Scope/VariableManager.s: Scope/VariableManager.cpp.s
 
-.PHONY : VariableManager.s
+.PHONY : Scope/VariableManager.s
 
 # target to generate assembly for a file
-VariableManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s
-.PHONY : VariableManager.cpp.s
+Scope/VariableManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/build.make CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.s
+.PHONY : Scope/VariableManager.cpp.s
 
 main.o: main.cpp.o
 
@@ -295,9 +295,9 @@ help:
 	@echo "... Scope/Scope.o"
 	@echo "... Scope/Scope.i"
 	@echo "... Scope/Scope.s"
-	@echo "... VariableManager.o"
-	@echo "... VariableManager.i"
-	@echo "... VariableManager.s"
+	@echo "... Scope/VariableManager.o"
+	@echo "... Scope/VariableManager.i"
+	@echo "... Scope/VariableManager.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

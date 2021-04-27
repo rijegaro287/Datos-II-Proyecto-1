@@ -1,7 +1,7 @@
 #include "Communication/Socket.h"
 #include <json/json.h>
 #include "Memory/MemoryPool.h"
-#include "VariableManager.h"
+#include "Scope/VariableManager.h"
 #include "Communication/HTTPServer.h"
 
 

@@ -11,16 +11,13 @@ Scope::Scope(){
     length = 0;
 }
 
-Scope::~Scope() {
-}
-
 /*
  * Agrega una variable nueva a la lista.
  * Recibe el puntero al dato, el tipo de dato y el nombre de la variable.
  */
 void Scope::add(void* ptr, std::string dataType, std::string varName){
     Node* newNode = new Node();
-    newNode->setPtr(ptr);
+    newNode->setPointer(ptr);
     newNode->setDataType(dataType);
     newNode->setVariableName(varName);
     newNode->setNext(nullptr);
@@ -33,7 +30,7 @@ void Scope::add(void* ptr, std::string dataType, std::string varName){
     length++;
 }
 
-void Scope::freeMemory(Node* node){
+void Scope::deleteNode(Node* node){
     Node* tmp = head;
     while(tmp != nullptr){
         if(tmp == node)
@@ -128,17 +125,21 @@ Json::Value Scope::freeAllMemory() {
     Node* tmp = head;
     int i = 0;
     while (tmp != nullptr){
+        if (tmp->getPointer() == nullptr){
+            tmp = tmp->getNext();
+            continue;
+        }
         if(tmp->getPointerType() != "") {
             Node *nodeOfVariablePointed = searchNode(tmp->getPointerPointer());
             if (nodeOfVariablePointed)
-                nodeOfVariablePointed->decreaseCount();
+                nodeOfVariablePointed->decreaseReferenceCount();
             else {
                 //Aquí se llega si la dirección a la que apunta el segundo puntero no es una variable
             }
         }
         jsonObject["nombreDeVariableEliminada"][i] = tmp->getVariableName();
         MemoryPool::getInstance()->freeMemory(tmp->getPointer());
-        tmp->setPtr(nullptr);
+        tmp->setPointer(nullptr);
         tmp = tmp->getNext();
         i++;
     }
@@ -193,7 +194,7 @@ void Scope::addStruct(void *ptr, std::string dataType, std::string name,  std::s
         tmp->setNext(tmp->getNext());
     }
     Node* newNode = new Node();
-    newNode->setPtr(ptr);
+    newNode->setPointer(ptr);
     newNode->setDataType(dataType);
     newNode->setVariableName(name);
     newNode->setStructName(structName);
@@ -217,7 +218,7 @@ void Scope::addPointer(void *ptr, std::string dataType, std::string name, std::s
         tmp->setNext(tmp->getNext());
     }
     Node* newNode = new Node();
-    newNode->setPtr(ptr);
+    newNode->setPointer(ptr);
     newNode->setDataType(dataType);
     newNode->setVariableName(name);
     newNode->setPointerType(pointerType);
@@ -231,27 +232,42 @@ void Scope::addPointer(void *ptr, std::string dataType, std::string name, std::s
     length++;
 }
 
-bool Scope::inn(std::string name){
-    Node* tmp = head;
-    bool inn = false;
-    for (int i = 0; i < length; ++i) {
-        if(name == tmp->getVariableName()){
-            perror("\"La variable ya existe\"");
-            inn = true;
-            break;
-        }
-        tmp->setNext(tmp->getNext());
-    }
-    if (inn){
-        return true;
-    }else {
-        return false;
-    }
-}
+//bool Scope::inn(std::string name){
+//    Node* tmp = head;
+//    bool inn = false;
+//    for (int i = 0; i < length; ++i) {
+//        if(name == tmp->getVariableName()){
+//            perror("\"La variable ya existe\"");
+//            inn = true;
+//            break;
+//        }
+//        tmp->setNext(tmp->getNext());
+//    }
+//    if (inn){
+//        return true;
+//    }else {
+//        return false;
+//    }
+//}
 
 Node *Scope::getHead() const {
     return head;
 }
+
+Json::Value Scope::lookForGarbage() {
+    Node* tmp = head;
+    Json::Value jsonObject;
+    while(tmp != nullptr){
+        if(tmp->getUsageCount() == 0){
+            void* ptr = tmp->getPointer();
+            jsonObject["variablesEliminadas"] = tmp->getVariableName();
+            MemoryPool::getInstance()->freeMemory(ptr);
+            deleteNode(tmp);
+        }
+    }
+    return jsonObject;
+}
+
 
 
 

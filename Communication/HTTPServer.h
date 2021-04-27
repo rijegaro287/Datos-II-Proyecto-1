@@ -1,7 +1,7 @@
 #pragma once
 #include <pistache/endpoint.h>
 #include <pistache/router.h>
-#include "../VariableManager.h"
+#include "Scope/VariableManager.h"
 
 #define log(msg) std::cout << msg << std::endl
 /**
@@ -20,6 +20,7 @@ public:
 private:
     std::shared_ptr<Http::Endpoint> httpEndpoint;
     Rest::Router router;
+    static int port;
     explicit HTTPServer(Address addr) : httpEndpoint(std::make_shared<Http::Endpoint>(addr)){}
     void init(size_t thr = 1);
     void start();
@@ -69,15 +70,36 @@ private:
      */
     void actualizarScopes(const Rest::Request &request, Http::ResponseWriter response);
 
+    /**
+     * @brief actualizarValorVariable Ruta para actualizar el valor de una variable.
+     * @param request
+     * @param response
+     */
     void actualizarValorVariable(const Rest::Request &request, Http::ResponseWriter response);
 
-    void returnAddress(const Rest::Request &request, Http::ResponseWriter response);
+    /**
+     * @brief retornarDireccion Ruta que devuelve la dirección de una dato almacenado.
+     * @param request
+     * @param response
+     */
+    void retornarDireccion(const Rest::Request &request, Http::ResponseWriter response);
 
+    /**
+     * @brief finalizarEjecucion Ruta para finalizar la ejecucion y eliminar toda la memoria
+     * almacenada en el MemoryPool.
+     * @param request
+     * @param response
+     */
     void finalizarEjecucion(const Rest::Request &request, Http::ResponseWriter response);
 
     void retornarTimeline(const Rest::Request &request, Http::ResponseWriter response);
-
+    /**
+     * @brief retornarAtributoDeStruct Ruta para retornar el valor de
+     * un atributo perteneciente a un struct.
+     * @param request
+     * @param response
+     */
     void retornarAtributoDeStruct(const Rest::Request &request, Http::ResponseWriter response);
 
-    void primerRecorrido(const Rest::Request &request, Http::ResponseWriter response);
+    void finalizarOverview(const Rest::Request &request, Http::ResponseWriter response);
 };

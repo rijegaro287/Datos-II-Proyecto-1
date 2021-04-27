@@ -110,10 +110,10 @@
 		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.h">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
-		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.h">
+		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.h">
 			<Option target="Datos_II_Proyecto_1_Servidor"/>
 		</Unit>
 		<Unit filename="/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/main.cpp">

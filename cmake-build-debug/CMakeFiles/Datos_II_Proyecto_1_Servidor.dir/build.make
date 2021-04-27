@@ -102,18 +102,18 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/Scope.cpp -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.s
 
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o: ../VariableManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o -c /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o: ../Scope/VariableManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o -c /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp
 
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp > CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.i
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp > CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.i
 
-CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/VariableManager.cpp -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.s
+CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordi/Documentos/GitKraken/Datos-II-Proyecto-1-Servidor/Scope/VariableManager.cpp -o CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.s
 
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/flags.make
 CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o: ../main.cpp
@@ -145,7 +145,7 @@ CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.s: cmak
 Datos_II_Proyecto_1_Servidor_OBJECTS = \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o" \
-"CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o" \
+"CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o" \
 "CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o"
 
@@ -157,7 +157,7 @@ Datos_II_Proyecto_1_Servidor_EXTERNAL_OBJECTS = \
 
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Memory/MemoryPool.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/Scope.cpp.o
-Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/VariableManager.cpp.o
+Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Scope/VariableManager.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/main.cpp.o
 Datos_II_Proyecto_1_Servidor: CMakeFiles/Datos_II_Proyecto_1_Servidor.dir/Communication/HTTPServer.cpp.o
 Datos_II_Proyecto_1_Servidor: /home/yordi/Documentos/vcpk/vcpkg/installed/x64-linux/debug/lib/objects-Debug/jsoncpp_object/json_reader.cpp.o
