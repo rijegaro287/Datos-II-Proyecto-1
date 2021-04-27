@@ -254,19 +254,6 @@ Node *Scope::getHead() const {
     return head;
 }
 
-Json::Value Scope::lookForGarbage() {
-    Node* tmp = head;
-    Json::Value jsonObject;
-    while(tmp != nullptr){
-        if(tmp->getUsageCount() == 0){
-            void* ptr = tmp->getPointer();
-            jsonObject["variablesEliminadas"] = tmp->getVariableName();
-            MemoryPool::getInstance()->freeMemory(ptr);
-            deleteNode(tmp);
-        }
-    }
-    return jsonObject;
-}
 
 
 

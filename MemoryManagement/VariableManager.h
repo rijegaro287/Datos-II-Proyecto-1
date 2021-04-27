@@ -169,10 +169,6 @@ public:
          * memoria almacenada del MemoryPool.
          */
         void endRun();
-
-        static std::string updateUsagesCount(Node* node);
-        std::string changeBoolOverview(Node *node);
-        std::string lookForGarbage();
 };
 
 

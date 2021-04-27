@@ -149,20 +149,6 @@ public:
             perror("Conteo de referencias negativas");
         }
     }
-
-    int getUsageCount() const {
-        return usageCount;
-    }
-    void increaseUsagesCount(){
-        usageCount++;
-    }
-    void decreaseUsagesCount(){
-        usageCount++;
-        if(usageCount < 0) {
-            std::cout << "algo anda mal, numero de usos negativos" << std::endl;
-        }
-    }
-
     /**
      * @brief Cambia el valor al que apunta el puntero del Node.
      * @param jsonObject Objeto json con el valor nuevoy el tipo de dato.

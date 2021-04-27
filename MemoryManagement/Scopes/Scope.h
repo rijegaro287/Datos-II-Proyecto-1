@@ -92,8 +92,6 @@ public:
      * @return Nodo Node head.
      */
     Node *getHead() const;
-
-    Json::Value lookForGarbage();
 };
 
 
