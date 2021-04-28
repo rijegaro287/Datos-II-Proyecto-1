@@ -92,6 +92,8 @@ public:
      * @return Nodo Node head.
      */
     Node *getHead() const;
+
+    Node *searchNodeOfStruct(std::string structName, std::string name);
 };
 
 

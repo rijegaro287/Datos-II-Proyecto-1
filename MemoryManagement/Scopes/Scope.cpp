@@ -158,7 +158,7 @@ Node* Scope::searchNode(std::string varName) {
     Node* tmp = head;
     Node* seekedNode = nullptr;
     while(tmp != nullptr){
-        if (varName== tmp->getVariableName()){
+        if (varName== tmp->getVariableName() and tmp->getStructName().size() == 0){
             seekedNode = tmp;
             break;
         }
@@ -233,6 +233,24 @@ void Scope::addPointer(void *ptr, std::string dataType, std::string name, std::s
 
 Node *Scope::getHead() const {
     return head;
+}
+
+Node *Scope::searchNodeOfStruct(std::string structName, std::string name) {
+    bool flag = false;
+    Node* tmp = head;
+    while(tmp != nullptr){
+        if(tmp->getVariableName() == name){
+            for(auto structFather : tmp->getStructName()){
+                if (structName == structFather)
+                    flag = true;
+                    break;
+            }
+        }
+        if(flag)
+            break;
+        tmp = tmp->next;
+    }
+    return tmp;
 }
 
 

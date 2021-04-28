@@ -175,6 +175,8 @@ public:
          * @return
          */
         std::string updateStructAttributeValue(std::string jsonString);
+
+    Node *searchNodeOfStruct(std::string structName, std::string name);
 };
 
 
