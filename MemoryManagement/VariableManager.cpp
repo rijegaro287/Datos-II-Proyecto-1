@@ -83,7 +83,6 @@ std::string VariableManager::newScope() {
  */
 Node* VariableManager::searchNode(std::string varName) {
     Node* nodo = nullptr;
-    std::cout<<scopes.size()<<std::endl;
     for (auto list : scopes){
         nodo = list->searchNode(varName);
         if (nodo)

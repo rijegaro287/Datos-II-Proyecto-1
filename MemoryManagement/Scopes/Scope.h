@@ -92,7 +92,12 @@ public:
      * @return Nodo Node head.
      */
     Node *getHead() const;
-
+    /**
+     * @brief Busca un nodo Node perteneciente a un struct.
+     * @param structName Nombre del struct
+     * @param name nombre de variable
+     * @return
+     */
     Node *searchNodeOfStruct(std::string structName, std::string name);
 };
 
