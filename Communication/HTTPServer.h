@@ -31,7 +31,6 @@ private:
      * @param response
      */
     void conexionInicial(const Rest::Request &request, Pistache::Http::ResponseWriter response);
-
     /**
      * @brief crearVariable Ruta para crear variables de datos primitivos y  referencias.
      * @param request
@@ -62,28 +61,24 @@ private:
      * @param response
      */
     void desreferenciarPuntero(const Rest::Request &request, Http::ResponseWriter response);
-
     /**
      * @brief actualizarScopes Ruta para crear o eliminar un scope.
      * @param request
      * @param response
      */
     void actualizarScopes(const Rest::Request &request, Http::ResponseWriter response);
-
     /**
      * @brief actualizarValorVariable Ruta para actualizar el valor de una variable.
      * @param request
      * @param response
      */
     void actualizarValorVariable(const Rest::Request &request, Http::ResponseWriter response);
-
     /**
      * @brief retornarDireccion Ruta que devuelve la dirección de una dato almacenado.
      * @param request
      * @param response
      */
     void retornarDireccion(const Rest::Request &request, Http::ResponseWriter response);
-
     /**
      * @brief finalizarEjecucion Ruta para finalizar la ejecucion y eliminar toda la memoria
      * almacenada en el MemoryPool.
@@ -91,8 +86,6 @@ private:
      * @param response
      */
     void finalizarEjecucion(const Rest::Request &request, Http::ResponseWriter response);
-
-    void retornarTimeline(const Rest::Request &request, Http::ResponseWriter response);
     /**
      * @brief retornarAtributoDeStruct Ruta para retornar el valor de
      * un atributo perteneciente a un struct.
@@ -100,6 +93,10 @@ private:
      * @param response
      */
     void retornarAtributoDeStruct(const Rest::Request &request, Http::ResponseWriter response);
-
-    void finalizarOverview(const Rest::Request &request, Http::ResponseWriter response);
+    /**
+     * @brief Actualiza el  valor de un atributo del struct
+     * @param request
+     * @param response
+     */
+    void actualizarAtributoDeStruct(const Rest::Request &request, Http::ResponseWriter response);
 };

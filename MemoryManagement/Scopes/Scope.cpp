@@ -133,9 +133,8 @@ Json::Value Scope::freeAllMemory() {
             Node *nodeOfVariablePointed = searchNode(tmp->getPointerPointer());
             if (nodeOfVariablePointed)
                 nodeOfVariablePointed->decreaseReferenceCount();
-            else {
-                //Aquí se llega si la dirección a la que apunta el segundo puntero no es una variable
-            }
+                jsonObject["datoAntiguo"][i]["nombre"] = nodeOfVariablePointed->getVariableName();
+                jsonObject["datoAntiguo"][i]["conteoDeReferencias"] = nodeOfVariablePointed->getReferenceCount();
         }
         jsonObject["nombreDeVariableEliminada"][i] = tmp->getVariableName();
         MemoryPool::getInstance()->freeMemory(tmp->getPointer());
@@ -231,24 +230,6 @@ void Scope::addPointer(void *ptr, std::string dataType, std::string name, std::s
     }
     length++;
 }
-
-//bool MemoryManagement::inn(std::string name){
-//    Node* tmp = head;
-//    bool inn = false;
-//    for (int i = 0; i < length; ++i) {
-//        if(name == tmp->getVariableName()){
-//            perror("\"La variable ya existe\"");
-//            inn = true;
-//            break;
-//        }
-//        tmp->setNext(tmp->getNext());
-//    }
-//    if (inn){
-//        return true;
-//    }else {
-//        return false;
-//    }
-//}
 
 Node *Scope::getHead() const {
     return head;

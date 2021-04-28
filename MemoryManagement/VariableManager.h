@@ -17,7 +17,6 @@
 class VariableManager {
     private:
         static VariableManager* variableManager;
-        static bool boolOverview;
         static std::list<Scope *> scopes;
         Scope* mainScope;
         /**
@@ -169,6 +168,13 @@ public:
          * memoria almacenada del MemoryPool.
          */
         void endRun();
+        /**
+         * @brief Cambia el valor del atributo perteneciente a un struct.
+         * @param jsonString Objeto json con el nombre del atributo, nombre del struct
+         * al que pertenece y nuevo valor.
+         * @return
+         */
+        std::string updateStructAttributeValue(std::string jsonString);
 };
 
 

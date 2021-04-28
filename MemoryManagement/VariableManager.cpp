@@ -453,6 +453,7 @@ void VariableManager::endRun() {
     }
     Json::Value jsonObject = mainScope->freeAllMemory();
     MemoryPool::getInstance()->setAllNodesEmpty();
+
 }
 
 std::string VariableManager::returnStructAttribute(std::string jsonString) {
@@ -472,7 +473,7 @@ std::string VariableManager::returnStructAttribute(std::string jsonString) {
             break;
         }
     }
-    if(flag == false){
+    if(!flag){
         perror("Variable no encontrada");
         return "Variable no encontrada";
     }
@@ -481,6 +482,32 @@ std::string VariableManager::returnStructAttribute(std::string jsonString) {
     void* ptr = node->getPointer();
 
     jsonObject = getPointerValue(jsonObject, dataType, ptr);
+    return jsonToString(jsonObject);
+}
+
+std::string VariableManager::updateStructAttributeValue(std::string jsonString) {
+    Json::Value jsonObject = stringToJson(jsonString);
+    std::string structName = jsonObject.get("nombreDeStruct", "NameError").asString();
+    std::string name = jsonObject.get("nombre", "NameError").asString();
+    Node* node = searchNode(name);
+
+    if (!node){
+        perror("Variable no encontrada");
+        return "Variable no encontrada";
+    }
+    bool flag = false;
+    for (auto name : node->getStructName()) {
+        if (name == structName){
+            flag = true;
+            break;
+        }
+    }
+    if(!flag){
+        perror("Variable no encontrada");
+        return "Variable no encontrada";
+    }
+
+    node->setPointerValue(jsonObject);
     return jsonToString(jsonObject);
 }
 
