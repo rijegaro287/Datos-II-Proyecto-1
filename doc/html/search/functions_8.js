@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lookforgarbage_118',['lookForGarbage',['../classVariableManager.html#a2c051c94446dd7fa4162fb190bedb0a4',1,'VariableManager::lookForGarbage()'],['../classScope.html#aa8166a3f2daebe74b89fa0e9c8921630',1,'Scope::lookForGarbage()']]]
+  ['memorypool_110',['MemoryPool',['../classMemoryPool.html#aa24312762b620e0bf8be0997de649fde',1,'MemoryPool']]]
 ];

@@ -89,26 +89,18 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> start();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> setupRoutes();</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> conexionInicial(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> crearVariable(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> devolverVariable(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> crearStruct(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> asignarDireccion(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> desreferenciarPuntero(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> actualizarScopes(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> actualizarValorVariable(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> retornarDireccion(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> finalizarEjecucion(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> retornarTimeline(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> retornarAtributoDeStruct(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> finalizarOverview(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> crearVariable(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> devolverVariable(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> crearStruct(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> asignarDireccion(<span class="keyword">const</span> Rest::Request &amp;request, Pistache::Http::ResponseWriter response);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> desreferenciarPuntero(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> actualizarScopes(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> actualizarValorVariable(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> retornarDireccion(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> finalizarEjecucion(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> retornarAtributoDeStruct(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> actualizarAtributoDeStruct(<span class="keyword">const</span> Rest::Request &amp;request, Http::ResponseWriter response);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
 <div class="ttc" id="aVariableManager_8h_html"><div class="ttname"><a href="VariableManager_8h.html">VariableManager.h</a></div><div class="ttdoc">Gestión de scopes Scopes y nodos Node.</div></div>
 <div class="ttc" id="aclassHTTPServer_html"><div class="ttname"><a href="classHTTPServer.html">HTTPServer</a></div><div class="ttdef"><b>Definition:</b> HTTPServer.h:17</div></div>
 <div class="ttc" id="aclassHTTPServer_html_aa35daae16509a2eb7b77b3b547f18bd6"><div class="ttname"><a href="classHTTPServer.html#aa35daae16509a2eb7b77b3b547f18bd6">HTTPServer::createServer</a></div><div class="ttdeci">static HTTPServer * createServer(int port)</div></div>

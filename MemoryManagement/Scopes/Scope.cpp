@@ -130,11 +130,12 @@ Json::Value Scope::freeAllMemory() {
             continue;
         }
         if(tmp->getPointerType() != "") {
-            Node *nodeOfVariablePointed = searchNode(tmp->getPointerPointer());
-            if (nodeOfVariablePointed)
+            Node* nodeOfVariablePointed = searchNode(tmp->getPointerPointer());
+            if (nodeOfVariablePointed) {
                 nodeOfVariablePointed->decreaseReferenceCount();
                 jsonObject["datoAntiguo"][i]["nombre"] = nodeOfVariablePointed->getVariableName();
                 jsonObject["datoAntiguo"][i]["conteoDeReferencias"] = nodeOfVariablePointed->getReferenceCount();
+            }
         }
         jsonObject["nombreDeVariableEliminada"][i] = tmp->getVariableName();
         MemoryPool::getInstance()->freeMemory(tmp->getPointer());

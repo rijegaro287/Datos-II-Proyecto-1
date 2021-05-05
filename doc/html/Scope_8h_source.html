@@ -100,12 +100,11 @@ $(function() {
 <div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classScope.html#a816a23b40526eaee9e354f8092cdb199">   84</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScope.html#a816a23b40526eaee9e354f8092cdb199">print</a>();</div>
 <div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classScope.html#ae69da9422b78cbda08b41355ac361057">   89</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classScope.html#ae69da9422b78cbda08b41355ac361057">getLength</a>();</div>
 <div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classScope.html#ac130d1941502f276fb1ae96049f89557">   94</a></span>&#160;    <a class="code" href="classNode.html">Node</a> *<a class="code" href="classScope.html#ac130d1941502f276fb1ae96049f89557">getHead</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classScope.html#aa8166a3f2daebe74b89fa0e9c8921630">   96</a></span>&#160;    Json::Value <a class="code" href="classScope.html#aa8166a3f2daebe74b89fa0e9c8921630">lookForGarbage</a>();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//DATOS_II_PROYECTO_1_SERVIDOR_SCOPE_H</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classScope.html#ae13a4171e03dca3c41e8b459bc1b2ca8">  101</a></span>&#160;    <a class="code" href="classNode.html">Node</a> *<a class="code" href="classScope.html#ae13a4171e03dca3c41e8b459bc1b2ca8">searchNodeOfStruct</a>(std::string structName, std::string name);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//DATOS_II_PROYECTO_1_SERVIDOR_SCOPE_H</span></div>
 <div class="ttc" id="aMemoryPool_8h_html"><div class="ttname"><a href="MemoryPool_8h.html">MemoryPool.h</a></div><div class="ttdoc">Creacion y gestion de la memoria.</div></div>
 <div class="ttc" id="aNode_8h_html"><div class="ttname"><a href="Node_8h.html">Node.h</a></div><div class="ttdoc">Clase que almacena las caracateristicas de las variables. Pertenece a los scopes.</div></div>
 <div class="ttc" id="aclassNode_html"><div class="ttname"><a href="classNode.html">Node</a></div><div class="ttdef"><b>Definition:</b> Node.h:23</div></div>
@@ -118,9 +117,9 @@ $(function() {
 <div class="ttc" id="aclassScope_html_a56ab097a930d2910868c495151072b10"><div class="ttname"><a href="classScope.html#a56ab097a930d2910868c495151072b10">Scope::deleteInPos</a></div><div class="ttdeci">void deleteInPos(int pos)</div><div class="ttdoc">Borra el nodo en la posición recibida.</div></div>
 <div class="ttc" id="aclassScope_html_a68998eca0900da04092e1bb9c1c03c83"><div class="ttname"><a href="classScope.html#a68998eca0900da04092e1bb9c1c03c83">Scope::addStruct</a></div><div class="ttdeci">void addStruct(void *ptr, std::string varType, std::string, std::string structName)</div><div class="ttdoc">Agrega un struct a un scope.</div></div>
 <div class="ttc" id="aclassScope_html_a816a23b40526eaee9e354f8092cdb199"><div class="ttname"><a href="classScope.html#a816a23b40526eaee9e354f8092cdb199">Scope::print</a></div><div class="ttdeci">void print()</div><div class="ttdoc">Imprime el nombre de las variables almacenadas en el scope.</div></div>
-<div class="ttc" id="aclassScope_html_aa8166a3f2daebe74b89fa0e9c8921630"><div class="ttname"><a href="classScope.html#aa8166a3f2daebe74b89fa0e9c8921630">Scope::lookForGarbage</a></div><div class="ttdeci">Json::Value lookForGarbage()</div></div>
 <div class="ttc" id="aclassScope_html_aaa944082758b9510df532bd1da39b21b"><div class="ttname"><a href="classScope.html#aaa944082758b9510df532bd1da39b21b">Scope::freeAllMemory</a></div><div class="ttdeci">Json::Value freeAllMemory()</div><div class="ttdoc">Libera el espacio de todas las variable en el MemoryPool y elimina todos los elementos del scope.</div></div>
 <div class="ttc" id="aclassScope_html_ac130d1941502f276fb1ae96049f89557"><div class="ttname"><a href="classScope.html#ac130d1941502f276fb1ae96049f89557">Scope::getHead</a></div><div class="ttdeci">Node * getHead() const</div></div>
+<div class="ttc" id="aclassScope_html_ae13a4171e03dca3c41e8b459bc1b2ca8"><div class="ttname"><a href="classScope.html#ae13a4171e03dca3c41e8b459bc1b2ca8">Scope::searchNodeOfStruct</a></div><div class="ttdeci">Node * searchNodeOfStruct(std::string structName, std::string name)</div><div class="ttdoc">Busca un nodo Node perteneciente a un struct.</div></div>
 <div class="ttc" id="aclassScope_html_ae69da9422b78cbda08b41355ac361057"><div class="ttname"><a href="classScope.html#ae69da9422b78cbda08b41355ac361057">Scope::getLength</a></div><div class="ttdeci">int getLength()</div><div class="ttdoc">Retorna el largo del scope.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

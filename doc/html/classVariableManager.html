@@ -95,10 +95,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0cb011908490f9fa9e17643e1565f701"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#a0cb011908490f9fa9e17643e1565f701">endRun</a> ()</td></tr>
 <tr class="memdesc:a0cb011908490f9fa9e17643e1565f701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina todos los scopes y vacía la memoria almacenada del <a class="el" href="classMemoryPool.html">MemoryPool</a>.  <a href="classVariableManager.html#a0cb011908490f9fa9e17643e1565f701">More...</a><br /></td></tr>
 <tr class="separator:a0cb011908490f9fa9e17643e1565f701"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80112bc2b616f56475c30754b0dcfbc7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#a80112bc2b616f56475c30754b0dcfbc7">changeBoolOverview</a> (<a class="el" href="classNode.html">Node</a> *node)</td></tr>
-<tr class="separator:a80112bc2b616f56475c30754b0dcfbc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c051c94446dd7fa4162fb190bedb0a4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#a2c051c94446dd7fa4162fb190bedb0a4">lookForGarbage</a> ()</td></tr>
-<tr class="separator:a2c051c94446dd7fa4162fb190bedb0a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b9a424da38e3786831e44a18f92c8e6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#a7b9a424da38e3786831e44a18f92c8e6">updateStructAttributeValue</a> (std::string jsonString)</td></tr>
+<tr class="memdesc:a7b9a424da38e3786831e44a18f92c8e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el valor del atributo perteneciente a un struct.  <a href="classVariableManager.html#a7b9a424da38e3786831e44a18f92c8e6">More...</a><br /></td></tr>
+<tr class="separator:a7b9a424da38e3786831e44a18f92c8e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc0fa9ff644c28127429f4f92e2ad2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#affc0fa9ff644c28127429f4f92e2ad2d">searchNodeOfStruct</a> (std::string structName, std::string name)</td></tr>
+<tr class="memdesc:affc0fa9ff644c28127429f4f92e2ad2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca un nodo <a class="el" href="classNode.html">Node</a> perteneciente a un struct.  <a href="classVariableManager.html#affc0fa9ff644c28127429f4f92e2ad2d">More...</a><br /></td></tr>
+<tr class="separator:affc0fa9ff644c28127429f4f92e2ad2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -123,8 +125,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b13a1f54dedb32701eff9bf7a2ad69c"><td class="memItemLeft" align="right" valign="top">static Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#a1b13a1f54dedb32701eff9bf7a2ad69c">stringToJson</a> (std::string jsonString)</td></tr>
 <tr class="memdesc:a1b13a1f54dedb32701eff9bf7a2ad69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convierte un string a json.  <a href="classVariableManager.html#a1b13a1f54dedb32701eff9bf7a2ad69c">More...</a><br /></td></tr>
 <tr class="separator:a1b13a1f54dedb32701eff9bf7a2ad69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcca129c89a77cd13b8ffd7c56894cdf"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariableManager.html#afcca129c89a77cd13b8ffd7c56894cdf">updateUsagesCount</a> (<a class="el" href="classNode.html">Node</a> *node)</td></tr>
-<tr class="separator:afcca129c89a77cd13b8ffd7c56894cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a87dd54fab725ac40b2721f8ae9f0a49a"></a>
@@ -159,24 +159,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>objeto json con las direcciones y conteo de referencias de las variables alteradas. </dd></dl>
-
-</div>
-</div>
-<a id="a80112bc2b616f56475c30754b0dcfbc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80112bc2b616f56475c30754b0dcfbc7">&#9670;&nbsp;</a></span>changeBoolOverview()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string VariableManager::changeBoolOverview </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classNode.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -353,23 +335,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2c051c94446dd7fa4162fb190bedb0a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c051c94446dd7fa4162fb190bedb0a4">&#9670;&nbsp;</a></span>lookForGarbage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string VariableManager::lookForGarbage </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aa0914cb86a6af222926f9c3104deec68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa0914cb86a6af222926f9c3104deec68">&#9670;&nbsp;</a></span>returnAddress()</h2>
 
@@ -480,6 +445,44 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="affc0fa9ff644c28127429f4f92e2ad2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc0fa9ff644c28127429f4f92e2ad2d">&#9670;&nbsp;</a></span>searchNodeOfStruct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNode.html">Node</a>* VariableManager::searchNodeOfStruct </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>structName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Busca un nodo <a class="el" href="classNode.html">Node</a> perteneciente a un struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">structName</td><td>Nombre del struct </td></tr>
+    <tr><td class="paramname">name</td><td>nombre de variable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a1b13a1f54dedb32701eff9bf7a2ad69c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b13a1f54dedb32701eff9bf7a2ad69c">&#9670;&nbsp;</a></span>stringToJson()</h2>
 
@@ -542,29 +545,30 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afcca129c89a77cd13b8ffd7c56894cdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcca129c89a77cd13b8ffd7c56894cdf">&#9670;&nbsp;</a></span>updateUsagesCount()</h2>
+<a id="a7b9a424da38e3786831e44a18f92c8e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b9a424da38e3786831e44a18f92c8e6">&#9670;&nbsp;</a></span>updateStructAttributeValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::string VariableManager::updateUsagesCount </td>
+          <td class="memname">std::string VariableManager::updateStructAttributeValue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classNode.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>jsonString</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Cambia el valor del atributo perteneciente a un struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonString</td><td>Objeto json con el nombre del atributo, nombre del struct al que pertenece y nuevo valor. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

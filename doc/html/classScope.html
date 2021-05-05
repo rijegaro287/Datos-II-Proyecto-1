@@ -105,8 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae69da9422b78cbda08b41355ac361057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac130d1941502f276fb1ae96049f89557"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScope.html#ac130d1941502f276fb1ae96049f89557">getHead</a> () const</td></tr>
 <tr class="separator:ac130d1941502f276fb1ae96049f89557"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8166a3f2daebe74b89fa0e9c8921630"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScope.html#aa8166a3f2daebe74b89fa0e9c8921630">lookForGarbage</a> ()</td></tr>
-<tr class="separator:aa8166a3f2daebe74b89fa0e9c8921630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae13a4171e03dca3c41e8b459bc1b2ca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScope.html#ae13a4171e03dca3c41e8b459bc1b2ca8">searchNodeOfStruct</a> (std::string structName, std::string name)</td></tr>
+<tr class="memdesc:ae13a4171e03dca3c41e8b459bc1b2ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca un nodo <a class="el" href="classNode.html">Node</a> perteneciente a un struct.  <a href="classScope.html#ae13a4171e03dca3c41e8b459bc1b2ca8">More...</a><br /></td></tr>
+<tr class="separator:ae13a4171e03dca3c41e8b459bc1b2ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a17c806f9852bb4454ed5709564945373"></a>
@@ -358,23 +359,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa8166a3f2daebe74b89fa0e9c8921630"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8166a3f2daebe74b89fa0e9c8921630">&#9670;&nbsp;</a></span>lookForGarbage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Json::Value Scope::lookForGarbage </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a816a23b40526eaee9e354f8092cdb199"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a816a23b40526eaee9e354f8092cdb199">&#9670;&nbsp;</a></span>print()</h2>
 
@@ -445,6 +429,44 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>nodo <a class="el" href="classNode.html">Node</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ae13a4171e03dca3c41e8b459bc1b2ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae13a4171e03dca3c41e8b459bc1b2ca8">&#9670;&nbsp;</a></span>searchNodeOfStruct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNode.html">Node</a>* Scope::searchNodeOfStruct </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>structName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Busca un nodo <a class="el" href="classNode.html">Node</a> perteneciente a un struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">structName</td><td>Nombre del struct </td></tr>
+    <tr><td class="paramname">name</td><td>nombre de variable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
