@@ -493,10 +493,9 @@ std::string VariableManager::updateStructAttributeValue(std::string jsonString) 
     if (!node) {
         perror("Variable no encontrada");
         return "Variable no encontrada";
-
-        node->setPointerValue(jsonObject);
-        return jsonToString(jsonObject);
     }
+    node->setPointerValue(jsonObject);
+    return jsonToString(jsonObject);
 }
 
 Node *VariableManager::searchNodeOfStruct(std::string structName, std::string name) {

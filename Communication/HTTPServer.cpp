@@ -149,6 +149,11 @@ void HTTPServer::finalizarEjecucion(const Rest::Request &request, Pistache::Http
 void HTTPServer::actualizarAtributoDeStruct(const Rest::Request &request, Pistache::Http::ResponseWriter response) {
     log(request.body());
     std::string jsonString = VariableManager::getInstance()->updateStructAttributeValue(request.body());
-    response.send(Http::Code::Ok, jsonString);
+    if (jsonString == "Variable no encontrada") {
+        VariableManager::getInstance()->endRun();
+        response.send(Http::Code::Bad_Request, jsonString);
+    }else {
+        response.send(Http::Code::Ok, jsonString);
+    }
 }
 
